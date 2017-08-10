@@ -11,6 +11,7 @@
 	mov ds, ax		;Point Data segment to correct mem location (0)
 	mov ss, ax		;Stack starts at 0
 	mov sp, 0x9c00	;20000h past code start
+	
 	mov si, msg		;Move starting address of msg to SI register
 	call biosprintstring 
 	
@@ -56,13 +57,14 @@ hang:
 ; ES = Absolute address for start of video memory
 ; AH = Formatting attributes for characters to print
 ; SI = Pointer to starting address of string to print
-dochar:   
+
+vmemprintstring_doloop:   
 	call vmemprintchar         ; print one character
 	
 vmemprintstring:
 	lodsb			;load string char to al
 	cmp al, 0
-	jne dochar
+	jne vmemprintstring_doloop
 	add byte[ypos], 1 ;down one row (LF)
 	mov byte[xpos], 0 ;back to left (CR)
 	ret
@@ -76,6 +78,7 @@ vmemprintstring:
 ; ES = Absolute address for start of video memory
 ; AL = ASCII Character to print
 ; AH = Formatting attributes for character
+
 vmemprintchar:
 	mov cx, ax		  	 ;Save char/attribute
 	movzx ax, byte[ypos] ;grab ypos
@@ -94,23 +97,36 @@ vmemprintchar:
 	ret
 ;----- End Procedure -----
 
-biosprintstring:		;Use BIOS to pring char string in SI register
+
+;----- Procedure biosprintstring -----
+;Use BIOS cpu interrupt to print a string (null terminated)
+;
+; SI = address of the starting string
+
+biosprintstring:		
 	lodsb
 	or al, al
-	jz done
+	jz biosprintstring_done
 	mov ah, al
 	call biosprintchar
 	jmp biosprintstring
-done:
+biosprintstring_done:
 	ret
+;----- End Procedure -----
 
 
+;----- Procedure biosprintchar -----
+;Use BIOS to print a single char
+;
+;AL = ASCII character to print
 
-biosprintchar:			;Use BIOS to print char residing in the AL register
+biosprintchar:			
 	mov bh, 0x0			;Write to page 0
 	mov ah, 0x0E		;Use teletype output
 	int 0x10			;Use BIOS interrupt 10h / ah=0x0E to draw char
 	ret
+;----- End Procedure -----
+
 
 
 ;====== DATA SEGMENT ;============
