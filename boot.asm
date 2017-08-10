@@ -26,19 +26,36 @@
 	stosw			 ;Move contents of AX into Address located in ES
 	;----------------------------------------------
 	
-	
 	mov ax, 0xb800  ;Move to Video Mem
 	mov es, ax
 	mov ah, 0x04	;Red on black
 	mov si, msg
 	call vmemprintstring
 	
+	mov ax, 0xb800  ;Move to Video Mem
+	mov es, ax
+	mov ah, 0x05	;Pink on black
+	mov al, 0x4d	;'M' char
+	call vmemprintchar
+	
+	mov ax, 0xb800  ;Move to Video Mem
+	mov es, ax
+	mov ah, 0x06	;Orange on black
+	mov al, 0x4f	;'O' char
+	call vmemprintchar
+	
 	
 hang:
 	jmp hang			;loop the bootloader forever
 
 
-	
+;----- Procedure vmemprintstring -----
+; Prints a null terminated string. Advances
+; the x and y writer position for future calls
+;
+; ES = Absolute address for start of video memory
+; AH = Formatting attributes for characters to print
+; SI = Pointer to starting address of string to print
 dochar:   
 	call vmemprintchar         ; print one character
 	
@@ -49,7 +66,16 @@ vmemprintstring:
 	add byte[ypos], 1 ;down one row (LF)
 	mov byte[xpos], 0 ;back to left (CR)
 	ret
+;----- End Procedure -----
 	
+
+;----- Procedure vmemprintchar -----
+; Prints a single character. Advances the
+; x writer position.
+;
+; ES = Absolute address for start of video memory
+; AL = ASCII Character to print
+; AH = Formatting attributes for character
 vmemprintchar:
 	mov cx, ax		  	 ;Save char/attribute
 	movzx ax, byte[ypos] ;grab ypos
@@ -66,7 +92,8 @@ vmemprintchar:
 	stosw				 ;write char/attribute
 	add byte[xpos], 1	 ;advance right
 	ret
-	
+;----- End Procedure -----
+
 biosprintstring:		;Use BIOS to pring char string in SI register
 	lodsb
 	or al, al
