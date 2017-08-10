@@ -29,7 +29,7 @@
 	
 	mov ax, 0xb800  ;Move to Video Mem
 	mov es, ax
-	
+	mov ah, 0x04	;Red on black
 	mov si, msg
 	call vmemprintstring
 	
@@ -51,7 +51,6 @@ vmemprintstring:
 	ret
 	
 vmemprintchar:
-	mov ah, 0xF0      	 ;White on black color
 	mov cx, ax		  	 ;Save char/attribute
 	movzx ax, byte[ypos] ;grab ypos
 	mov dx, 160			 ;2 bytes (char/attrib)
