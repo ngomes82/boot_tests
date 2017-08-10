@@ -1,15 +1,19 @@
 ;========= CODE SEGMENT ;=========
 ;boot.asm
+;
+;nasm boot.asm -f bin -o iso_staging/boot/boot.img		 ;create floppy image! Place it in boot folder for iso.
+;mkisofs -r -b boot/boot.img -o bootcd.iso iso_staging	 ;make the cd .ISO filesystem
+
 	[ORG 0x7C00]	;Start loaded at 0000:7C00
 	[BITS 16]
 
-	cli				;Clear interrupts
 	xor ax, ax		;Clear AX, first boot might be all screwy.
-	mov ds, ax		;Point Data segment to correct mem location
-	
-	
-	mov si, msg
+	mov ds, ax		;Point Data segment to correct mem location (0)
+	mov si, msg		;Move starting address of msg to SI register
 	call biosprintstring 
+	
+	cli				;Disable interrupts, to start entering protected mode
+	
 hang:
 	jmp hang			;loop the bootloader forever
 
