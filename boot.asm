@@ -46,6 +46,11 @@
 	call vmemprintchar
 	
 	
+	mov ax, 0xe0fa		   ;test contents
+	mov  word [reg16], ax  ;look at register contents
+	mov ah, 0xf0		   ;white on black
+	call vmemprintreg16
+	
 hang:
 	jmp hang			;loop the bootloader forever
 
@@ -98,6 +103,36 @@ vmemprintchar:
 ;----- End Procedure -----
 
 
+;----- Procedure printreg16 -----
+; Use video memory to print the contents of 
+; a 16 bit register in hexadecimal
+;
+; reg16 = register contents to look at
+; AH	= formatting attributes for characters
+vmemprintreg16:
+	mov dh, ah 			;store formatting data
+	mov di, outstr16
+	mov ax, [reg16]
+	mov si, hexstr
+	mov cx, 4   		;four hex characters to fill
+vmemprintreg16_loop:
+	rol ax, 4   		;Rotate four bits over
+	mov bx, ax   		;Move to bx to avoid altering ax contents
+	and bx, 0x0f   		;AND lower 4 bits with (0b00001111, 0d15) to arrive at index from 0-14 for hex char
+	mov bl, [si + bx]	;Use the index to reference hexstr
+	mov [di], bl		;Move hex char into output
+	inc di
+	dec cx
+	jnz vmemprintreg16_loop
+
+	mov ah, dh		   ;Restore formatting attributes
+	mov si, outstr16   ;Move output hex characters to be drawn
+	call vmemprintstring
+
+	ret
+;----- End Procedure -----
+
+
 ;----- Procedure biosprintstring -----
 ;Use BIOS cpu interrupt to print a string (null terminated)
 ;
@@ -128,8 +163,10 @@ biosprintchar:
 ;----- End Procedure -----
 
 
-
 ;====== DATA SEGMENT ;============
+hexstr   db '0123456789ABCDEF'
+outstr16   db '0000', 0  ;register value string
+reg16   dw    0  ; pass values to printreg16
 xpos db 0
 ypos db 1
 msg	db 'Hello World!', 0	;Declare 0 terminated set of characters 'H', 'E', 'L', 'L', 'O', '0'
