@@ -3,6 +3,9 @@
 Boot from Fat32 USB Example:
 https://github.com/ishanthilina/USB-FAT32-Bootloader/blob/master/src/boot.asm
 
+Stack Overflow Answer on bootables:
+https://stackoverflow.com/questions/22054578/how-to-run-a-program-without-an-operating-system/32483545#32483545
+
 Barebones Bootloader/Multiboot examples:
 https://github.com/cirosantilli/x86-bare-metal-examples/tree/d217b180be4220a0b4a453f31275d38e697a99e0
 
