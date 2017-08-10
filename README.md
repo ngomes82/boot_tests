@@ -4,7 +4,7 @@ Tests for rolling a custom bootloader
 http://wiki.osdev.org/Babystep2
 
 
-Build Commands Used In Cygwin
+Build commands used in Cygwin:
 
 nasm boot.asm -f bin -o iso_staging/boot/boot.img   				 #create floppy image! Place it in boot folder for iso.
 
