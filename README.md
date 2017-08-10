@@ -1,7 +1,11 @@
 # boot_tests
 
+Boot from Fat32 USB Example:
+https://github.com/ishanthilina/USB-FAT32-Bootloader/blob/master/src/boot.asm
+
 Tests for rolling a custom bootloader
 http://wiki.osdev.org/Babystep2
+
 
 
 Build commands used in Cygwin:
