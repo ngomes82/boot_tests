@@ -41,4 +41,4 @@ biosprintchar:			;Use BIOS to print char residing in the AL register
 msg	db 'Hello World!', 0	;Declare 0 terminated set of characters 'H', 'E', 'L', 'L', 'O', '0'
 	times 510-($-$$) db 0	;BIOS looks for a 512 byte Boot Sector, subtracting from data above this line, fill up to 510 bytes with 0's
 	dw 0x55AA				;Boot Signature (0x55AA) The last 2 bytes of 512 Boot Sector. Older bios's look for this.
-	times 1474048 db 0		;Fill remaining space of 1.4mb floppy with 0s for El Torito Bootable CD
+	times 1474560-($-$$) db 0 ;Fill remaining space of 1.44mb floppy image (1474560 bytes) with 0s for El Torito Bootable CD
