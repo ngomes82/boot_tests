@@ -3,6 +3,9 @@
 Boot from Fat32 USB Example:
 https://github.com/ishanthilina/USB-FAT32-Bootloader/blob/master/src/boot.asm
 
+Barebones MBR to possibly boot from USB:
+http://wiki.osdev.org/MBR
+
 Tests for rolling a custom bootloader
 http://wiki.osdev.org/Babystep2
 
