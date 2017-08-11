@@ -1,5 +1,8 @@
 # boot_tests
 
+Really good Info:
+http://www.brokenthorn.com/Resources/OSDev9.html
+
 Boot from Fat32 USB Example:
 https://github.com/ishanthilina/USB-FAT32-Bootloader/blob/master/src/boot.asm
 
@@ -14,7 +17,6 @@ http://wiki.osdev.org/MBR
 
 Tests for rolling a custom bootloader
 http://wiki.osdev.org/Babystep2
-
 
 
 Build commands used in Cygwin:
