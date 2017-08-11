@@ -18,43 +18,29 @@
 	cli				;Disable interrupts, to start entering protected mode
 	cld				;DI is incremented when rep instruction is called
 	
-	;----------------------------------------------
-	;Draw a single red square at 0,0 as an example of video memory drawing
-	mov ax, 0xb800   ; look at video mem
-	mov es, ax		 
-	mov ax,0x4020 	 ;colour + space character(0x20)
-	xor di, di		 ;DI position 0,0
-	stosw			 ;Move contents of AX into Address located in ES
-	;----------------------------------------------
+	lgdt [gdtinfo]   ; load gdt register
+
+	mov  eax, cr0   ; switch to pmode by
+	or al,1         ; set pmode bit
+	mov  cr0, eax
 	
-	mov ax, 0xb800  ;Move to Video Mem
-	mov es, ax
-	mov ah, 0x04	;Red on black
-	mov si, msg
-	call vmemprintstring
-	
-	mov ax, 0xb800  ;Move to Video Mem
-	mov es, ax
-	mov ah, 0x05	;Pink on black
-	mov al, 0x4d	;'M' char
-	call vmemprintchar
-	
-	mov ax, 0xb800  ;Move to Video Mem
-	mov es, ax
-	mov ah, 0x06	;Orange on black
-	mov al, 0x4f	;'O' char
-	call vmemprintchar
-	
-	
-	mov ax, 0xe0fa		   ;test contents
-	mov  word [reg16], ax  ;look at register contents
-	mov ah, 0xf0		   ;white on black
-	call vmemprintreg16
-	
+	jmp 08h:protected32
+[BITS 32]
+protected32:
+	mov		ax, 0x10		; set data segments to data selector (0x10)
+	mov		ds, ax
+	mov		ss, ax
+	mov		es, ax
+
+	mov bx, 0x0f01   ; attrib/char of smiley
+	mov eax, 0x0b8000 ; note 32 bit offset
+	mov word [ds:eax], bx
+
 hang:
 	jmp hang			;loop the bootloader forever
 
 
+[BITS 16]
 ;----- Procedure vmemprintstring -----
 ; Prints a null terminated string. Advances
 ; the x and y writer position for future calls
@@ -164,6 +150,15 @@ biosprintchar:
 
 
 ;====== DATA SEGMENT ;============
+gdtinfo:
+   dw gdt_end - gdt - 1   ;last byte in table
+   dd gdt         ;start of table
+ 
+gdt        dd 0,0  ; entry 0 is always unused
+code_segment    db 0xff, 0xff, 0, 0, 0, 10011010b, 11001111b, 0
+data_segment    db 0xff, 0xff, 0, 0, 0, 10010010b, 11001111b, 0
+gdt_end:
+
 hexstr   db '0123456789ABCDEF'
 outstr16   db '0000', 0  ;register value string
 reg16   dw    0  ; pass values to printreg16
