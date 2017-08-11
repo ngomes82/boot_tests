@@ -23,4 +23,6 @@ Build commands used in Cygwin:
 
 nasm boot.asm -f bin -o iso_staging/boot/boot.img   				 #create floppy image! Place it in boot folder for iso.
 
-mkisofs -r -b boot/boot.img -o bootcd.iso iso_staging				 #make the cd .ISO filesystem
+mkisofs -r -b boot/boot.img -o bootcd.iso iso_staging				 #make a cd .ISO filesystem
+
+dd bs=512 count=2880 if=/dev/fda of=/path/imagefile.img     # make a floppy image
