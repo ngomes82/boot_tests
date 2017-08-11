@@ -22,10 +22,13 @@ http://wiki.osdev.org/Babystep2
 Build commands used in Cygwin:
 
 --- CD ISO (needs last line in boot.asm for sizing)
+
 nasm boot.asm -f bin -o iso_staging/boot/boot.img   				 #create image! Place it in boot folder for iso.
 
 mkisofs -r -b boot/boot.img -o bootcd.iso iso_staging				 #make a cd .ISO filesystem
 
 ---Floppy---
+
 nasm boot.asm -f bin -o floppy.bin
+
 dd bs=512 count=2880 if=floppy.bin of=floppy.img     # make a floppy image
