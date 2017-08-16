@@ -2,7 +2,7 @@
 ;boot.asm
 ;
 
-	[ORG 0x7C00]	;Start loaded at 0000:7C00
+	[ORG 0x7C00]		;Boot starts loaded at 0000:7C00, use this so our code is 1-to-1 with physical address
 	[BITS 16]
 
 	xor ax, ax		;Clear AX, first boot might be all screwy.
