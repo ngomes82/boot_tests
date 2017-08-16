@@ -8,7 +8,7 @@
 	xor ax, ax		;Clear AX, first boot might be all screwy.
 	mov ds, ax		;Point Data segment to correct mem location (0)
 	mov ss, ax		;Stack starts at 0
-	mov sp, 0x9c00	;20000h past code start
+	mov sp, 0x9c00		;stack pointer, 20000h past code start
 	
 	mov si, msg		;Move starting address of msg to SI register
 	call biosprintstring 
@@ -22,7 +22,7 @@
 	or al,1         ; set pmode bit
 	mov  cr0, eax
 	
-	jmp 08h:protected32
+	jmp 08h:protected32	;long jump to the second GDT entry (8 bytes per descriptor)
 [BITS 32]
 protected32:
 	mov		ax, 0x10		; set data segments to data selector (0x10)
