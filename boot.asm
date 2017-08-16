@@ -13,8 +13,11 @@
 	mov si, msg		;Move starting address of msg to SI register
 	call biosprintstring 
 	
+	
 	cli				;Disable interrupts, to start entering protected mode
 	cld				;DI is incremented when rep instruction is called
+	
+	;TODO: Enable the A20 line where applicable
 	
 	lgdt [gdtinfo]   ; load gdt register
 
