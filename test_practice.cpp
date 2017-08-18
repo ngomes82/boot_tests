@@ -4,6 +4,33 @@
 #include <iostream>
 #include <string>
 
+//Example of inheritance in c++ 
+//Remember in final code the deceleration / definitions of functions will be in different files!
+class BaseExample
+{
+
+public:
+	
+	BaseExample(int ArgData)
+	{
+		data = ArgData;
+	}
+
+	int data;
+
+	//Declaring a virtual function.
+	virtual int ExampleOverride() { return 10;  } 
+};
+
+class ChildExample : BaseExample
+{
+	//Calling the base class constructor. Specific name needs to be used since c++ supports multiple inheritance. No Super.
+	ChildExample(int ArgChildData) : BaseExample(ArgChildData){} 
+
+	//Overriding a parent function, also calling the parent. Specific name needs to be used due to multiple inheritance. No Super.
+	int ExampleOverride() override { return BaseExample::ExampleOverride() + 10; }
+};
+
 
 //Simple implementation of the data structure needed to represent a linked list.
 class LinkedListNode
