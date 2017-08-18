@@ -19,6 +19,9 @@ Tests for rolling a custom bootloader
 http://wiki.osdev.org/Babystep2
 
 
+Math reference:
+http://www.euclideanspace.com/maths/geometry/rotations/conversions/index.htm
+
 Build commands used in Cygwin:
 
 --- CD ISO (needs last line in boot.asm for sizing)
