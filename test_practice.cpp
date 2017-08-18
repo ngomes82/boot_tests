@@ -19,17 +19,40 @@ public:
 	int data;
 
 	//Declaring a virtual function.
-	virtual int ExampleOverride() { return 10;  } 
+	virtual int ExampleOverride() { return 10;  }
 };
 
 class ChildExample : BaseExample
 {
+public:
 	//Calling the base class constructor. Specific name needs to be used since c++ supports multiple inheritance. No Super.
 	ChildExample(int ArgChildData) : BaseExample(ArgChildData){} 
 
 	//Overriding a parent function, also calling the parent. Specific name needs to be used due to multiple inheritance. No Super.
 	int ExampleOverride() override { return BaseExample::ExampleOverride() + 10; }
 };
+
+
+//Final class, this class can't be derived from. 
+class FinalChildExample final : ChildExample
+{
+
+public:
+	FinalChildExample() : ChildExample(5) {}
+
+	//final function, the function can not be overridden by children (which can't exist b/c class is final, but this is just an example).
+	int ExampleOverride() final override { return ChildExample::ExampleOverride() + 10; } 
+};
+
+
+//Multiple Inheritance is bad because of diamond problem. Suppose you make a base class A.
+// Then you make two second tier classes (B,C) that inherit from A. 
+// Finally you make a class D that inherits from both (B,C) using multiple inheritance.
+// Now you make an overridable function on A. Then B and C override that function BUT the final class D DOES NOT.
+// If you call D->ExampleOverride()..... what gets called? does it call B::ExampleOverride() or C::ExampleOverride()??? Undefined and ambiguous behaviour.
+
+
+//END Inheritance examples
 
 
 //Simple implementation of the data structure needed to represent a linked list.
