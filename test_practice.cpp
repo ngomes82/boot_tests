@@ -57,7 +57,7 @@ bool HasLoop(LinkedListNode* First)
 	}
 }
 
-//Reverse a string in any way.
+//Reverse a string using any method.
 //Just allocate the exact amount of space as the other string,
 //Then iterate through it in reverse and place last element first.
 std::string ReverseString(std::string StrToReverse)
@@ -73,7 +73,8 @@ std::string ReverseString(std::string StrToReverse)
 	return ToReturn;
 }
 
-//Reverse a string with no secondary array or storage.
+//Reverse a string with no secondary array or storage. 
+//Use XOR swap method that takes advantage of Commutative property.
 //Since we're swapping, meet in the middle to avoid overswapping....
 //Which would have happened if you used the above code.
 void ReverseStringInPlace(std::string& StrToReverse)
