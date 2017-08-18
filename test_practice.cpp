@@ -4,6 +4,59 @@
 #include <iostream>
 #include <string>
 
+
+//Simple implementation of the data structure needed to represent a linked list.
+class LinkedListNode
+{
+
+public:
+	LinkedListNode* Next;
+	//LinkedListNode* Previous; Doubly linked list.
+	int data;
+};
+
+
+//Discover if a linked list has a cycle by using the
+//Tortise and hare method. In a cyclic list the faster
+//Moving pointer has to eventually catch up to the slower moving pointer.
+bool HasLoop(LinkedListNode* First)
+{
+
+	if (First == nullptr)
+	{
+		return false;
+	}
+
+	LinkedListNode* slow;
+	LinkedListNode* fast;
+
+	slow = fast = First;
+
+	while (true)
+	{
+		slow = slow->Next;
+
+		if (fast->Next != nullptr)
+		{
+			fast = fast->Next->Next;
+		}
+		else
+		{
+			return false; //Found an end point
+		}
+
+		if (slow == nullptr || fast == nullptr)
+		{
+			return false; //Found an end point
+		}
+
+		if (slow == fast)
+		{
+			return true; //the faster pointer has caught up with the slower, found a cycle.
+		}
+	}
+}
+
 //Reverse a string in any way.
 //Just allocate the exact amount of space as the other string,
 //Then iterate through it in reverse and place last element first.
@@ -67,6 +120,7 @@ void permute(std::string a, int l, int r)
 
 
 //Combination (order doesn't matter ex AB == BA   so don't print dupes)
+//
 
 
 //Power Set print {"A", "B", "AB", "BA"}
