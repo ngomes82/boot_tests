@@ -437,4 +437,28 @@ virtual calls takes even longer because of two levels of indirection. So CPU mis
 
 
 
+13) What are the new and delete keywords used for? What is the difference between a shared_ptr, weak_ptr, and a unique_ptr?
+*********************
+
+
+The new keyword is used to request memory allocation from the OS. OS returns a virtual memory address that maps
+to some physical memory in RAM. Delete is used to tell the OS to free/deallocate memory from use.
+
+These work with raw pointers which needs all of its memory managed by hand and must be deleted when appropriate.
+
+There are smart pointers which help memory management by using reference counting.
+
+A unique_ptr represents a one owner pointer. 
+Only the single owner can use the pointer. 
+The pointer is cleaned up when that single owner leaves scope or is destructed.
+It needs to be moved explicitly.
+
+A shared_ptr keeps a reference counter and increments it whenever the pointer is passed. It decrements the counter
+whenever the pointer leaves scope of a class or function. Once the coutner reaches 0, the pointer is automatically
+flagged for deletion. Can cause issues with cyclic dependencies or data structs.
+
+A weak_ptr just observes a pointer but does not increment its counter. It can become invalid.
+So you much check if the underlying pointer has expired. 
+
+
 
