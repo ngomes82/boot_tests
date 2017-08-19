@@ -11,6 +11,36 @@ class SomeHeader; //Use this if all you have are ptr members!!
 
 //End Forward decleration example
 
+//Function Pointer / Delegate Example
+
+float ExampleDelegateConcreteFunc1(float arg)
+{
+	return (arg + 9.0f);
+}
+
+float ExampleDelegateConcreteFunc2(float arg)
+{
+	return (arg + 20.0f);
+}
+
+typedef float (*ExampleDelegate) (float arg);
+
+
+void ExampleDelegateRun()
+{
+	float original = 20.0f;
+
+	ExampleDelegate function = &ExampleDelegateConcreteFunc1;
+
+	std::cout << "delegate1: " << function(original) << std::endl;
+
+	function = &ExampleDelegateConcreteFunc2;
+
+	std::cout << "delegate2: " << function(original) << std::endl;
+}
+//END Function pointer / delegate example
+
+
 
 //Type Conversion Example
 class ExampleImplicitConversion
@@ -414,6 +444,11 @@ void permute(std::string a, int l, int r)
 //TEST CASES 
 //--------------------
 
+void TestExampleDelegate()
+{
+	ExampleDelegateRun();
+}
+
 void TestExampleTypeConversion()
 {
 	ConversionExamples();
@@ -533,7 +568,7 @@ int main()
 	TestPassing();
 	StringIntConvertUsingSTD();
 	TestExampleTypeConversion();
-
+	TestExampleDelegate();
 
 	while (true)
 	{

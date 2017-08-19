@@ -464,5 +464,40 @@ A weak_ptr just observes a pointer but does not increment its counter. It can be
 So you much check if the underlying pointer has expired. 
 
 
-14)
+14) Show an example of using a function pointer as a callback, delegate, or event. 
 *********************
+
+float ExampleDelegateConcreteFunc1(float arg)
+{
+	return (arg + 9.0f);
+}
+
+float ExampleDelegateConcreteFunc2(float arg)
+{
+	return (arg + 20.0f);
+}
+
+typedef float (*ExampleDelegate) (float arg);
+
+
+void ExampleDelegateRun()
+{
+	float original = 20.0f;
+
+	ExampleDelegate function = &ExampleDelegateConcreteFunc1;
+
+	std::cout << "delegate1: " << function(original) << std::endl;
+
+	function = &ExampleDelegateConcreteFunc2;
+
+	std::cout << "delegate2: " << function(original) << std::endl;
+}
+
+
+
+
+15) What do the keywords  "extern c" signify?
+*********************
+
+
+
