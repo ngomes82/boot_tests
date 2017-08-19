@@ -4,6 +4,37 @@
 #include <iostream>
 #include <string>
 
+//Pass by Val, Ref, Ptr
+
+//Pass by val will copy the argument,
+//Then modify the LOCAL Copy only. The
+//original, outside of the context will be unchanged.
+void PassByValue(int val)
+{
+	val += 10;
+}
+
+//Pass by reference passes the Pointer to the original
+//into the function which allows you to modify the original
+// value. Keeps the syntax of a value type so no pointer 
+// operations are needed. Useful when you are just modifying the underlying.
+void PassByReference(int& val)
+{
+	val += 10;
+}
+
+//Passes in a pointer to the original.
+//Requires pointer operations to dereference
+//and modify the value. Useful mostly for when you want
+//to transfer ownership, you should prefer pass by reference
+//if all that's needed is modification of the value.
+void PassByPointer(int* val)
+{
+	(*val) += 20;
+}
+//END pass by val, reference and ptr
+
+
 //Interface Example
 class IExampleInterface
 {
@@ -246,6 +277,20 @@ void permute(std::string a, int l, int r)
 //TEST CASES 
 //--------------------
 
+void TestPassing()
+{
+	int original = 5;
+
+	PassByValue(original);
+	std::cout << "pass by val: " << original << std::endl;
+
+	PassByReference(original);
+	std::cout << "pass by ref: " << original << std::endl;
+
+	PassByPointer(&original);
+	std::cout << "pass by ptr: " << original << std::endl;
+}
+
 void TestInterface()
 {
 	DeriveInterfaceExample* DerivedExample 		= new DeriveInterfaceExample();
@@ -343,6 +388,8 @@ int main()
 	TestLinkedList();
 	TestConstructor();
 	TestInterface();
+	TestPassing();
+
 
 	while (true)
 	{
