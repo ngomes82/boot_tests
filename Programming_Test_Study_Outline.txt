@@ -176,8 +176,9 @@ class DeriveInterfaceExample : IExampleInterface
 
 //END Interface Example
 
-//You can use Interfaces to get a similar composition/decoration utility but without the dangers of 
-//multiple inheritance.
+//You can use Interfaces instead of multiple inheritance 
+//to get a similar composition/decoration utility 
+//but without the dangers of multiple inheritance.
 
 
 6)
