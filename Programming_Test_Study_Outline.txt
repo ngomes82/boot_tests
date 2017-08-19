@@ -5,9 +5,10 @@ Programming Test Study Outline
 C++ Specific Questions
 --------------------------------
 
+
 1) Write a Class with two constructors in c++. Have the default constructor use an initialization list.
   Have the other contructor pass in an argument and use assignment. What is the difference? What order will the initialization list follow?
-
+*********************
 
 //Constructor Example in C++
 class ConstructorExample
@@ -17,19 +18,63 @@ class ConstructorExample
 		int* ExampleArr;
 
 		//Example of an initialization list, Order of member decleration is order of initialization.
-
-		ConstructorExample() : Count( 10 ), ExampleArr( new int[Count] )
+		ConstructorExample() : Count( 5 ), ExampleArr( new int[Count] )
 		{
-
+			std::cout << "Default Constructor Called" << std::endl;
 		}
 
 		//Example of an assignment initialization. Initialization occurs just before body of constructor
 		//then constructor body executes and assignments occur.
-
 		ConstructorExample(int ArgCount)
 		{
+			std::cout << "Second Constructor Called" << std::endl;
+
 			Count = ArgCount;
 			ExampleArr = new int[Count];
+		}
+};
+//End Constructor Example
+
+
+
+
+2) Add a Copy Constructor to the above class. What is it used for?
+*********************
+
+//Constructor Example in C++
+class ConstructorExample
+{
+	public:
+		int Count;
+		int* ExampleArr;
+
+		//Example of an initialization list, Order of member decleration is order of initialization.
+		ConstructorExample() : Count( 5 ), ExampleArr( new int[Count] )
+		{
+			std::cout << "Default Constructor Called" << std::endl;
+		}
+
+		//Example of an assignment initialization. Initialization occurs just before body of constructor
+		//then constructor body executes and assignments occur.
+		ConstructorExample(int ArgCount)
+		{
+			std::cout << "Second Constructor Called" << std::endl;
+
+			Count = ArgCount;
+			ExampleArr = new int[Count];
+		}
+
+
+		//Copy Constructor, used when assigning or creating 
+		//an instance of ConstructionExample using ANOTHER instance of ConstructionExample.
+		ConstructorExample(const ConstructorExample& Other) : Count( Other.Count ), ExampleArr( new int[Count] )
+		{
+			std::cout << "Copy Constructor Called" << std::endl;
+
+			for(int i=0; i<Count; i++)
+			{
+				ExampleArr[i] = 444;
+			}
 		}
 };
 //End Constructor Example

@@ -13,17 +13,32 @@ class ConstructorExample
 		int* ExampleArr;
 
 		//Example of an initialization list, Order of member decleration is order of initialization.
-		ConstructorExample() : Count( 10 ), ExampleArr( new int[Count] )
+		ConstructorExample() : Count( 5 ), ExampleArr( new int[Count] )
 		{
-
+			std::cout << "Default Constructor Called" << std::endl;
 		}
 
 		//Example of an assignment initialization. Initialization occurs just before body of constructor
 		//then constructor body executes and assignments occur.
 		ConstructorExample(int ArgCount)
 		{
+			std::cout << "Second Constructor Called" << std::endl;
+
 			Count = ArgCount;
 			ExampleArr = new int[Count];
+		}
+
+
+		//Copy Constructor, used when assigning or creating 
+		//an instance of ConstructionExample using ANOTHER instance of ConstructionExample.
+		ConstructorExample(const ConstructorExample& Other) : Count( Other.Count ), ExampleArr( new int[Count] )
+		{
+			std::cout << "Copy Constructor Called" << std::endl;
+
+			for(int i=0; i<Count; i++)
+			{
+				ExampleArr[i] = 444;
+			}
 		}
 };
 //End Constructor Example
@@ -210,7 +225,12 @@ void TestConstructor()
 	ConstructorExample* ConstructorInstance = new ConstructorExample();
 	
 	std::cout << ConstructorInstance->Count << std::endl;
-	std::cout << ConstructorInstance->ExampleArr[7] << std::endl;
+	std::cout << ConstructorInstance->ExampleArr[3] << std::endl;
+
+	ConstructorExample SecondConstructorExample(10);
+	ConstructorExample  TestCopy(SecondConstructorExample);
+
+	std::cout << TestCopy.ExampleArr[7] << std::endl;
 
 	delete ConstructorInstance;
 }
