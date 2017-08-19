@@ -12,6 +12,38 @@ class SomeHeader; //Use this if all you have are ptr members!!
 //End Forward decleration example
 
 
+//Const correctness example
+//Const is used to prevent modificaiton of a value or pointer.
+//Use in function and memeber decleration to ensure the 
+//value remains un-modified throughout it's use.
+void ConstCorrectness()
+{
+	int i1 = 0;
+	int i2 = 1;
+	int i3 = 2;
+	int i4 = 3;
+	int i5 = 4;
+	int i6 = 5;
+
+	const int* p1 		= &i1;		  //Pointer to constant int, Value pointed to by p1 CAN'T change.
+	int* const p2 		= &i2;		  //Constant Pointer to an int, location pointed by p2 CAN'T change.
+	const int* const p3 = &i3;		  //Constant Pointer to a constant int, Value and Location CAN'T Change.
+	int const* p4		= &i4;		  // Same as const int*  , but looks and reads weird...
+	const int const* p5 = &i5;		  //This works, but is redundant. Duplicate const decleration!
+	const int const* const p6 = &i6;  //This works, but is redundant. Duplicate const decleration!
+
+
+//	(*p1) = 20;  //INVALID
+	p1 	  = &i2; //VALID
+
+	(*p2) = 20;  //VALID
+//	p2	  = &i1; //INVALID
+
+//	(*p3) = 900; //INVALID
+//	p3 	  = &i4; //INVALID
+}
+//End const correctness example
+
 
 
 //c++ string to int convert using lib
