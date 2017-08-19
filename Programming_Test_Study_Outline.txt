@@ -533,7 +533,70 @@ when used with a function decleration:
 }
 
 
-17)
+17) What is a namespace? When should it be used?
 *********************
+
+A namespace provides a method to place classes, functions, and variables  within a higher level scope.
+This is useful to avoid naming conflicts within large projects or when importing external libraries.
+
+You can identify namespace in each call by placing the namespace preceding 
+the use of the object in the namespace  e.x.  std::cout, std::rand()... etc.
+
+
+You can also specify the namespace to use within the header and sub-headers by placing a "using" decleration:
+
+	//Dangerous! includes whole namespace, could lead to conflicts in sub-headers!!
+	using namespace std; 
+
+	//Type aliasing, Locally re-identify an object. Could lead to conflicts in sub-headers!!
+	templace<class T>
+	using MyVector<T> = std::vector<T>;
+
+
+
+18) Name some STD data containers and their underlying data structure representation.
+*********************
+
+	std::array  		(statically sized array, contiguous) [c++11]
+	std::vector 		(dynamically sized array, contiguous)
+	std::deque			(double ended queue, non-contiguous)
+	std::forward_list 	(single linked list, non-contiguous) [c++11]
+	std::list			(doubly linked list, non-contiguous)
+
+	std::stack			
+	std::queue
+
+	//Ordered associative containers. Sorted with BST, you can iterate!
+	std::set 			(hashtable where value is key, uniqueness garunteed)
+	std::multiset		(hashtable where value is key, multiples allowed)
+	std::map 			(hashtable key=>value, uniqueness garunteed)
+	std::multimap	    (hashtable key=>value, multiples allowed)
+
+	//Unordered versions are just unordered_X  (faster to access, can't directly iterate)
+
+
+
+19) Whats the difference between a struct and a class?
+*********************
+For the most part, nothing.
+You can do anything with a struct that you can do with a class.
+
+The only real difference:
+Structs are public by default. 
+Classes are private by default.
+
+
+In practice (depends on the company):
+
+Structs are generally used to represent 
+smaller types that mostly consist of plain old data.
+
+Class are generally larger and represent more functionality.
+
+
+20) Give an example of using a template. How do they work udner the hood?
+	What are the pros and cons of using templates?
+*********************
+
 
 
