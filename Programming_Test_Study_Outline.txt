@@ -244,6 +244,7 @@ void StringIntConvertUsingSTD()
 
 *********************
 
+//When used with a variable:
 //Const is used to prevent modificaiton of a value or pointer.
 //Use in function and memeber decleration to ensure the 
 //value remains un-modified throughout it's use.
@@ -276,6 +277,9 @@ void ConstCorrectness()
 //	p3 	  = &i4; //INVALID
 }
 
+
+//When used with a function, it prevents the funciton from modifying values passed into it.
+// ex.   void SomeFunction() const { /* values in this function can't change. */ }
 
 
 
@@ -381,4 +385,29 @@ void ConversionExamples()
 }
 
 //END Type Conversion Example
+
+
+11) What do the mutable, volatile, and atomic keywords signify?
+*********************
+
+	-Mutable allows member variables of a class or struct to be changed EVEN WITHIN const functions!
+
+
+	-Volatile signifies to the compiler that some EXTERNAL process may modify a value, so don't event try to optimize it (the compiler may remove a value deemed un-necessary during optimization.)
+
+
+
+	-Atomic types are types that encapsulate a value whose access is guaranteed to not cause data races and can be used to synchronize memory accesses among different threads
+
+	Objects of atomic types are the only C++ objects that are free from data races; that is, if one thread writes to an atomic object while another thread reads from it, the behavior is well-defined.
+
+	In addition, accesses to atomic objects may establish inter-thread synchronization and order non-atomic memory accesses as specified by std::memory_order. These operations will be performed with std::memory_order_seq_cst, as this is the default order for all atomic operations in C++ 11.
+
+
+
+
+12) What is an inline function? What is the magnitude of the speed difference between inline, direct, and virtual calls? Why is that?
+*********************
+
+
 
