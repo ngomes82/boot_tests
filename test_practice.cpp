@@ -4,6 +4,31 @@
 #include <iostream>
 #include <string>
 
+
+//Constructor Example in C++
+class ConstructorExample
+{
+	public:
+		int Count;
+		int* ExampleArr;
+
+		//Example of an initialization list, Order of member decleration is order of initialization.
+		ConstructorExample() : Count( 10 ), ExampleArr( new int[Count] )
+		{
+
+		}
+
+		//Example of an assignment initialization. Initialization occurs just before body of constructor
+		//then constructor body executes and assignments occur.
+		ConstructorExample(int ArgCount)
+		{
+			Count = ArgCount;
+			ExampleArr = new int[Count];
+		}
+};
+//End Constructor Example
+
+
 //Example of inheritance in c++ 
 //Remember in final code the deceleration / definitions of functions will be in different files!
 class BaseExample
@@ -180,6 +205,16 @@ void permute(std::string a, int l, int r)
 //TEST CASES 
 //--------------------
 
+void TestConstructor()
+{
+	ConstructorExample* ConstructorInstance = new ConstructorExample();
+	
+	std::cout << ConstructorInstance->Count << std::endl;
+	std::cout << ConstructorInstance->ExampleArr[7] << std::endl;
+
+	delete ConstructorInstance;
+}
+
 void TestReverseString()
 {
 	std::string helloStr = "hello";
@@ -250,6 +285,7 @@ int main()
 	TestReverseSrtingInPlace();
 	TestPermutations();
 	TestLinkedList();
+	TestConstructor();
 
 
 	while (true)
