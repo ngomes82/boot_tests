@@ -511,6 +511,29 @@ when used with a function decleration:
      Use it with an iterator to loop over a std container.
  *********************
 
+ //The auto keyword allows the type of the variable being delcared to be
+ // automatically interpreted from its initializer.
 
+ void RunItrExample()
+{
+	std::vector<int> myIntVec;
+
+	myIntVec.push_back(1);
+	myIntVec.push_back(5);
+	myIntVec.push_back(8);
+
+	for( auto iterator = myIntVec.begin(); 
+		 iterator != myIntVec.end(); 
+		 iterator++ )
+	{
+		std::cout << (*iterator) << " ";
+	}
+
+	std::cout << " iteraror!" << std::endl;
+}
+
+
+17)
+*********************
 
 

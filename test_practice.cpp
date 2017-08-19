@@ -1,6 +1,7 @@
 // TestPractice.cpp : Defines the entry point for the console application.
 //
 
+#include <vector>
 #include <iostream>
 #include <string>
 
@@ -10,6 +11,31 @@
 class SomeHeader; //Use this if all you have are ptr members!!
 
 //End Forward decleration example
+
+//Auto and Iterator Example
+
+void RunItrExample()
+{
+	std::vector<int> myIntVec;
+
+	myIntVec.push_back(1);
+	myIntVec.push_back(5);
+	myIntVec.push_back(8);
+
+	for( auto iterator = myIntVec.begin(); 
+		 iterator != myIntVec.end(); 
+		 iterator++ )
+	{
+		std::cout << (*iterator) << " ";
+	}
+
+	std::cout << " iteraror!" << std::endl;
+}
+
+
+//End Auto and Iterator Example
+
+
 
 //Function Pointer / Delegate Example
 
@@ -444,6 +470,11 @@ void permute(std::string a, int l, int r)
 //TEST CASES 
 //--------------------
 
+void TestIterExample()
+{
+	RunItrExample();
+}
+
 void TestExampleDelegate()
 {
 	ExampleDelegateRun();
@@ -569,6 +600,7 @@ int main()
 	StringIntConvertUsingSTD();
 	TestExampleTypeConversion();
 	TestExampleDelegate();
+	TestIterExample();
 
 	while (true)
 	{
