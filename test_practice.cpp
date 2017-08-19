@@ -177,24 +177,34 @@ void permute(std::string a, int l, int r)
 //Power Set print {"A", "B", "AB", "BA"}
 
 
-int main()
-{
+//TEST CASES 
+//--------------------
 
-	std::string helloStrInPlace = "inplaceswap";
+void TestReverseString()
+{
 	std::string helloStr = "hello";
 	std::cout << helloStr << std::endl;
 
 	std::string Reversed = ReverseString(helloStr);
 	std::cout << Reversed << std::endl;
+}
 
+void TestReverseSrtingInPlace()
+{
+	std::string helloStrInPlace = "inplaceswap";
 	ReverseStringInPlace(helloStrInPlace);
 	std::cout << helloStrInPlace << std::endl;
 
+}
 
+void TestPermutations()
+{
 	std::string permutationStr = "abcd";
 	permute(permutationStr, 0, permutationStr.length() - 1);
+}
 
-
+void TestLinkedList()
+{
 	LinkedListNode* LLNodeA = new LinkedListNode();
 	LinkedListNode* LLNodeB = new LinkedListNode();
 	LinkedListNode* LLNodeC = new LinkedListNode();
@@ -223,6 +233,23 @@ int main()
 	{
 		std::cout << "Test2: No loop" << std::endl;
 	}
+
+	delete LLNodeA;
+	delete LLNodeB;
+	delete LLNodeC;
+	delete LLNodeD;
+}
+//-----------------
+//END TEST CASES
+
+
+int main()
+{	
+	
+	TestReverseString();
+	TestReverseSrtingInPlace();
+	TestPermutations();
+	TestLinkedList();
 
 
 	while (true)
