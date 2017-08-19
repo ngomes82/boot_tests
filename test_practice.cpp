@@ -195,6 +195,35 @@ int main()
 	permute(permutationStr, 0, permutationStr.length() - 1);
 
 
+	LinkedListNode* LLNodeA = new LinkedListNode();
+	LinkedListNode* LLNodeB = new LinkedListNode();
+	LinkedListNode* LLNodeC = new LinkedListNode();
+	LinkedListNode* LLNodeD = new LinkedListNode();
+
+	LLNodeA->Next = LLNodeB;
+	LLNodeB->Next = LLNodeC;
+	LLNodeC->Next = LLNodeD;
+
+	if( HasLoop(LLNodeA) )
+	{
+		std::cout << "Test1: Found a loop" << std::endl;
+	}
+	else
+	{
+		std::cout << "Test1: No loop" << std::endl;
+	}
+
+	LLNodeD->Next = LLNodeA;
+
+	if( HasLoop(LLNodeA) )
+	{
+		std::cout << "Test2: Found a loop" << std::endl;
+	}
+	else
+	{
+		std::cout << "Test2: No loop" << std::endl;
+	}
+
 
 	while (true)
 	{
