@@ -142,11 +142,43 @@ public:
  Now you make an overridable function on A. Then B and C override that function BUT the final class D DOES NOT.
  If you call D->ExampleOverride()..... what gets called? does it call B::ExampleOverride() or C::ExampleOverride()??? Undefined and ambiguous behaviour.
 
- You can use Interfaces to get a similar composition/decoration utility but without the dangers of 
- multiple inheritance.
+ 
 
 
-5)
+
+5) Write an example of an interface. Make sure its a fully abstract class with pure virtual functions.
+   Describe what an interface, abstract class, and pure virtual fucntion are. Why are interfaces useful?
 *********************
 
+//Interface Example
+class IExampleInterface
+{
 
+public:
+	//Pure Virtual Function, any class that derives
+	//from this interface is required to override this.
+	virtual void ExamplePureVirtualFunc() = 0;
+
+	//Prevents this class from ever being intialized, makes this an abstract class.
+	//Abstract classes can never be constructed by themselves, always require derivation.
+	virtual ~IExampleInterface() = 0;
+};
+
+//Need to Provide implementation of pure virtual destructor
+IExampleInterface::~IExampleInterface(){}
+
+class DeriveInterfaceExample : IExampleInterface
+{
+	//This is required to be implemented!
+	void ExamplePureVirtualFunc () 
+	{ std::cout << "Example Interface Implementation" << std::endl; }
+};
+
+//END Interface Example
+
+//You can use Interfaces to get a similar composition/decoration utility but without the dangers of 
+//multiple inheritance.
+
+
+6)
+*********************

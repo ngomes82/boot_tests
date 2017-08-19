@@ -4,6 +4,32 @@
 #include <iostream>
 #include <string>
 
+//Interface Example
+class IExampleInterface
+{
+
+public:
+	//Pure Virtual Function, any class that derives
+	//from this interface is required to override this.
+	virtual void ExamplePureVirtualFunc() = 0;
+
+	//Prevents this class from ever being intialized, makes this an abstract class.
+	//Abstract classes can never be constructed by themselves, always require derivation.
+	virtual ~IExampleInterface() = 0;
+};
+
+//Need to Provide implementation of pure virtual destructor
+IExampleInterface::~IExampleInterface(){}
+
+class DeriveInterfaceExample : IExampleInterface
+{
+	//This is required to be implemented!
+	void ExamplePureVirtualFunc () 
+	{ std::cout << "Example Interface Implementation" << std::endl; }
+};
+
+//END Interface Example
+
 
 //Constructor Example in C++
 class ConstructorExample
@@ -220,6 +246,16 @@ void permute(std::string a, int l, int r)
 //TEST CASES 
 //--------------------
 
+void TestInterface()
+{
+	DeriveInterfaceExample* DerivedExample 		= new DeriveInterfaceExample();
+	IExampleInterface* 		ExampleInterface    = (IExampleInterface*) DerivedExample;
+
+	ExampleInterface->ExamplePureVirtualFunc();
+
+	delete ExampleInterface;
+}
+
 void TestConstructor()
 {
 	ConstructorExample* ConstructorInstance = new ConstructorExample();
@@ -306,7 +342,7 @@ int main()
 	TestPermutations();
 	TestLinkedList();
 	TestConstructor();
-
+	TestInterface();
 
 	while (true)
 	{
