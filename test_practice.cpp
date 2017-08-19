@@ -14,7 +14,7 @@ void PassByValue(int val)
 	val += 10;
 }
 
-//Pass by reference passes the Pointer to the original
+//Pass by reference passes a reference to the original
 //into the function which allows you to modify the original
 // value. Keeps the syntax of a value type so no pointer 
 // operations are needed. Useful when you are just modifying the underlying.
