@@ -406,8 +406,35 @@ void ConversionExamples()
 
 
 
-12) What is an inline function? What is the magnitude of the speed difference between inline, direct, and virtual calls? Why is that?
+12) What is an inline function? What is the magnitude of the speed difference between inline, direct, and virtual calls? Why would certain calls take much longer?
 *********************
+
+Pros:
+When an inline keyword is used for a function it tells the compiler to direclty copy the contents of
+a function 'inline' with wherever its called. This is opposed to just doing a direction function call(jumping).
+This has the benefit of avoiding a function call overhead and pushing/poping variables.
+Also this increases the locality of data and instructions used by the call, allowing for CPU to prefetch better.
+
+cons:
+This increases overall executable size. 
+Can also increase compile times, since any code using an inline NEEDS to be recompiled 
+(can't just jump to newly compiled funciton!)
+B/c of increased executable size at call, may result in possible trashing if increased too large and casues page faults.
+
+Speed Magnitudes:
+
+3GHz in-order PowerPC CPU
+1024 float vector3's  (fits in L1)  with 1000 additions:
+
+inline  ~8ms
+direct  ~68ms
+virtual ~160ms
+
+direct call takes longer because of one level of indirection needed. So CPU misses instruction prefetch once.
+virtual calls takes even longer because of two levels of indirection. So CPU misses instruciton prefetch twice, AND needs to load data from the class that it's calling, so possible data cache miss.
+
+
+
 
 
 
