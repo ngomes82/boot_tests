@@ -494,10 +494,23 @@ void ExampleDelegateRun()
 }
 
 
-
-
 15) What do the keywords  "extern c" signify?
 *********************
+
+when used with a function decleration:
+ 	extern "C" void func(int);
+
+ Makes a function name in C++ have a C linkage.
+ That means the compiler does not mangle the name of the function. 
+ Which allows client C code to link and
+ use your function by using a compatible header file that contains just
+ the decleration of that function.
+
+
+ 16) What does the auto keyword mean in c++? 
+     Use it with an iterator to loop over a std container.
+ *********************
+
 
 
 
