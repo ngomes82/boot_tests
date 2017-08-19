@@ -4,6 +4,31 @@
 #include <iostream>
 #include <string>
 
+//Forward decleration example
+
+//#include "SomeHeader.h"
+class SomeHeader; //Use this if all you have are ptr members!!
+
+//End Forward decleration example
+
+
+
+
+//c++ string to int convert using lib
+void StringIntConvertUsingSTD()
+{
+
+ 	std::string str = std::to_string(20);
+
+ 	std::cout << str << std::endl;
+
+	int i  = std::stoi("900");
+
+	std::cout << i << std::endl;
+}
+//
+
+
 //Pass by Val, Ref, Ptr
 
 //Pass by val will copy the argument,
@@ -389,7 +414,7 @@ int main()
 	TestConstructor();
 	TestInterface();
 	TestPassing();
-
+	StringIntConvertUsingSTD();
 
 	while (true)
 	{

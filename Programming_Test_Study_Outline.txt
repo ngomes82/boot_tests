@@ -214,5 +214,55 @@ void PassByPointer(int* val)
 }
 
 
-7)
+7) Convert a string to int and vice versa in C++. Use of external lib is allowed.
 *********************
+
+//c++ string to int convert using lib
+void StringIntConvertUsingSTD()
+{
+
+ 	std::string str = std::to_string(20);
+
+ 	std::cout << str << std::endl;
+
+	int i  = std::stoi("900");
+
+	std::cout << i << std::endl;
+}
+
+
+
+8) Describe what the keyword const does? When and how is it used? 
+	Which of the following are valid uses:
+
+	"const int* p;
+	int const* p;
+	int* const p;
+	const int* const p;
+	const int const* p;
+	const int const* const p;"
+
+*********************
+
+
+TODO: Find an answer to this
+
+
+
+9) Describe what a forward decleration is? Why is it useful?
+*********************
+
+  Instead of including a full header using:
+  		 #include "HeaderFile.h"
+
+  You simply decalre a class instead:
+  		class HeaderFile.h;
+
+  This allows the compiler to just treat the uses of that class as a pointer
+  in the current file when doing initial header compilation pass.
+  This can speed up header compilation times, and can also break cyclic include dependancies.
+  It can only be used when the FULL type information of a class is NOT needed in the file.
+  E.x. Just having pointer member variables.
+  You won't be able to use it if the class depends on the header, in the case of inheritance 
+  or struct ownership.
+
