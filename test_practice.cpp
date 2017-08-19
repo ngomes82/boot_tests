@@ -12,6 +12,86 @@ class SomeHeader; //Use this if all you have are ptr members!!
 //End Forward decleration example
 
 
+//Type Conversion Example
+class ExampleImplicitConversion
+{
+
+public:
+	int data;
+
+	//Since explicit is not used the compiler can do implicit conversions!
+	ExampleImplicitConversion( int n ) : data(n) { }
+};
+
+class ExampleExplicitConstructor
+{
+
+public:
+	int data;
+
+	//Since explicit is used no implicit conversions!
+	explicit ExampleExplicitConstructor( int n ) : data(n) { }
+};
+
+void ConversionExamples()
+{
+	//Valid, can use constructor implicitly.
+	//But will cause '6' to be converted to ASCII int val 54.
+	ExampleImplicitConversion ImplicitConvert = '6'; 
+
+	std::cout << "Implicit Convert: " << ImplicitConvert.data << std::endl;
+
+	//INVALID, constructor is explicit!!!
+	//ExampleExplicitConstructor ExplicitConvert = '6'; 
+	
+	//Need to use constructor explicitly!!!!
+	ExampleExplicitConstructor ExplicitConstruct(6); 
+	
+	std::cout << "Explicit Constructor: " << ExplicitConstruct.data << std::endl;
+
+
+	//TYPE CASTING
+
+	//Notes on casting types!!!
+	//-----------------------------------
+
+	//static_cast, used for most intuitive literal type conversions. 
+	//When used for inheritance does NOT return nullptr on invalid casts!!
+
+	//dynamic_cast, used for most polymorphic or inherited casts
+	//returns null ptr when fails.
+
+	//const_cast, used to remove const.
+
+	//C style cast (int) - Tries static_cast, then reintp_cast, also applies const_cast if needed.
+
+
+
+	int testInt     = 10;
+	float testFloat = 0.0f;
+ 
+	int* testIntPtr     = &testInt;
+	float* testFloatPrt = &testFloat;
+
+	testFloat = static_cast<float>(testInt); //Valid, you can go from float to int
+
+	std::cout << "Static cast: " << testFloat << std::endl;
+
+	//INVALID, this is conversion doesn't make intuitive sense. 
+	//Unless mangled a float* can't point to an int*.
+
+	//testFloatPrt = static_cast<float*>(testIntPtr); 
+
+	//reinterp cast lets you do whatever crazy shit you want!!!
+	//this example treats the bits represented by (int)10 directly as a float!!!(1.4104 E-44)
+	testFloatPrt = reinterpret_cast<float*>(testIntPtr);
+
+	std::cout << "Reintrp cast: " << (*testFloatPrt) << std::endl;
+}
+
+//END Type Conversion Example
+
+
 //Const correctness example
 //Const is used to prevent modificaiton of a value or pointer.
 //Use in function and memeber decleration to ensure the 
@@ -334,6 +414,11 @@ void permute(std::string a, int l, int r)
 //TEST CASES 
 //--------------------
 
+void TestExampleTypeConversion()
+{
+	ConversionExamples();
+}
+
 void TestPassing()
 {
 	int original = 5;
@@ -447,6 +532,8 @@ int main()
 	TestInterface();
 	TestPassing();
 	StringIntConvertUsingSTD();
+	TestExampleTypeConversion();
+
 
 	while (true)
 	{
