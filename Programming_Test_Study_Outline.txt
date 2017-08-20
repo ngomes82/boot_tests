@@ -871,8 +871,25 @@ Projection = (V - Pn) * (V • Pn)
 
 
 
-32) Given a plane 
+32) Given a plane normal (Pn), a point on that plane (P1), 
+	and a second arbitrary point(P2).
+    Can you find out what side of the plane the point lies on.
 *********************
+
+	First find the vector between P2 and P1.
+
+	Dv = P2 - P1
+
+	Then take the dot product of that and the Plane normal
+
+	CrossP = Pn • Dv
+
+
+	If its + then its on the side of the normal.
+	If its - then its opposite the normal.
+	If its 0 then the point is ON the plane.
+
+
 
 
 
