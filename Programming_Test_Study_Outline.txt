@@ -1446,7 +1446,43 @@ bool HasLoop(LinkedListNode* First)
 }
 
 
-
-41) Describe a heap. How to implement it? Pros, Cons?
+41) Describe a stack. How to implement it? Pros, Cons?
     Operations and their complexities?
+*********************
+
+ A stack is a Last In, First Out structure (LiFo). 
+ Underlying it can be represented either using a dynamically 
+ sized array or linked list with some reference to the TOP.
+
+ For the most part all stack operations are O(1). 
+ Size is also O(1) [Unless using linked list as underlying]
+
+ Push: Pushes an element onto the stack and moves top index upward.
+ Pop:  Pops an element off the top of the stack, moves index downward.
+
+ Function calls can be emulated using a Stack (push arguments on, then pop off).
+ In this way a stack can be used to unroll recursive functions.
+
+
+
+42) Describe a Queue. How to implement it? Pros, Cons?
+    Operations and their complexities?
+*********************  
+
+ A queue is a First in, First out structur (FiFo).
+ Underlying it can be represented either using a dynamically sized
+ array or linked list with some reference to the Head and Tail.
+
+ For the most part all queue operations are O(1). 
+ Size is also O(1) [Unless using linked list as underlying]
+
+ Enqueue: Adds an element to the Tail of the queue. Advances tail pointer.
+ Dequeue: Removes an element from the Head of the queue. Advances head pointer.
+ 
+ Queues are commonly used as buffers when there is an differing rates 
+ between consumption of a resource and its generation. Also they can be useful
+ for job tasking / scheduling when not all jobs can be run simultaneously.
+
+
+43) 
 *********************
