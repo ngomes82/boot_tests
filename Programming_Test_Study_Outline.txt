@@ -1194,8 +1194,6 @@ translations, rotations, and scalings in a concise
 and effecient way.
 
 
-
-
 To translate an object by a vector v, each homogeneous vector p 
 (written in homogeneous coordinates) 
 can be multiplied by this translation matrix:
@@ -1217,5 +1215,98 @@ each point p = (px, py, pz) would need to be multiplied with this scaling matrix
    0  v_y  0  0 
    0   0  v_z 0 
    0   0   0  1
+]
+
+
+Rotation in 2D:
+(counter-clockwise)
+[
+   cos(Θ) -sin(Θ)
+   sin(Θ)  cos(Θ)
+]
+
+(clockwise)
+[
+   cos(Θ)   sin(Θ)
+   -sin(Θ)  cos(Θ)
+]
+
+
+Rotation in 3D using the angle Θ and the unit vector <x, y, z>:
+[
+	xx(1-cosΘ) + cosΘ     yx(1-cosΘ)-zsinΘ   zx(1-cosΘ)+ysinΘ
+	xy(1-cosΘ) + zsinΘ    yy(1-cosΘ)+cosΘ    zy(1-cosΘ)-xsinΘ 
+    xz(1-cosΘ) - ysinΘ    yz(1-cosΘ)+xsinΘ   zz(1-cosΘ)+cosΘ
+]
+
+
+
+Adding Matrices, MUST BE Same Dimensions
+
+Matrix 1:
+2	5	1
+4	-3	7
+5	8	6
+
+Matrix 2:
+4	6	-2
+-1	5	3
+9	0	4
+
+
+To add these matrices, simply get the value of each element from both matrices, and add them together:
+
+(2+4) = 6	    (5+6) = 11	    (1+ -2) = -1
+(4 + -1) = 3	(-3 + 5) = 2	(7+3) = 10
+(5+9) = 14	    (8+0) = 8	    (6+4) = 10
+
+
+Matrix 1 + Matrix 2:
+6	11	-1
+3	2	10
+14	8	10
+
+
+Subtracting is the same, but you subtract instead of add. (MUST BE same Dimensions)
+
+
+Multiplying matrices:
+
+For each element in the new matrix,
+multiple the row * column, then add them all up
+Ex:
+
+[
+  a  b
+  c  d
+]
+
+[
+  w  x
+  y  z
+]
+
+=
+
+[
+  aw + by   ax + bz
+  cw + dy   cx + dz  
+]
+
+Multiplying matrices with differing dimension CAN BE DONE 
+But they MUST HAVE same number of rows and columns. The 
+resulting matrix will cancel out the dimensions that are equal.
+So the final matrix will have sections of the differing dimension
+
+4x2 Matrix * 2x3 Matrix =  4x3 Matrix
+
+
+
+Identity Matrix
+Diagnols of 1's
+[
+  1  0  0
+  0  1  0
+  0  0  1
 ]
 
