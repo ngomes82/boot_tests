@@ -1345,8 +1345,15 @@ Look at Gauss-Jordan Elimination
 =
 
 1 / (ad-bc) *
+
 [
 	d  -b
    -c   a
 ]
+
+
+
+Data Structure Questions
+--------------------------------
+
 
