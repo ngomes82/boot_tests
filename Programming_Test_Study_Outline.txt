@@ -890,6 +890,34 @@ Projection = (V - Pn) * (V • Pn)
 	If its 0 then the point is ON the plane.
 
 
+33) Given two spheres in 3d space (represented by center point and radius)
+	Sc1 (x,y,z) Sr1   and  Sc2 (x,y,z) Sr2 
+    Find out if they overlap.
+*********************
+
+
+The equation of a sphere with center (h,j,k) and radius r :
+
+(x - h)2 + (y - j)2 + (z - k)2 = r2
+
+
+But we can just find the displacement of the center's Sc1 - Sc2
+Then get the magnitude of the displacement
+
+|Sc1 - Sc2|
+
+Then compare by adding the two sphere radii
+|Sc1 - Sc2| - (Sr1 + Sr2)
+
+If the result is + then they don't overlap
+If the result is - then they overlap
+If the result is 0 then they are exactly touching.
+
+
+34)
+*********************
+
+
 
 
 
