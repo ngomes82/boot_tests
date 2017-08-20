@@ -987,10 +987,10 @@ As an illustration
 
 				Details Of space 			 				Ways to represent Rotation
 ------------------------------------------------------------------------------------------------
-	# Axis of Rotation   Spatial Dimensions  ||  Euler Representation      Point on Unit Sphere
-			1 					2D			 ||	    1 Angle (x)			   2 values P(x,y)
-			2 					3D 			 ||		2 Angles (x, y)		   3 values P(x,y,z)
-			3 					3D 			 ||		3 Angles (x, y, z)     4 values P(x,y,z,w)
+# Axis of Rotation   Spatial Dimensions  ||  Euler Representation      Point on Unit Sphere
+       1                    2D           ||      1 Angle (x)              2 values P(x,y)
+       2                    3D           ||      2 Angles (x, y)          3 values P(x,y,z)
+       3                    3D           ||      3 Angles (x, y, z)       4 values P(x,y,z,w)
 
 
 Some use Quaternion definitions (assumes Z up):
@@ -1180,6 +1180,8 @@ public final void quatToMatrix(Quat4d q)
 
 	Show how to extract:
 	Position, euler angles, scale
+
+	What is the Identity Matrix?
 *********************
 
 
