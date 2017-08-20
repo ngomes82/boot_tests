@@ -939,8 +939,21 @@ such that it becomes axis alinged with the box,
 then run the overlap test.
 
 
+36) AABB to AABB Overlap
+*********************
 
-36) What is a Quaternion? Why is it useful?
+ Similar to the point to AABB Overlap test, but we need to do one test
+ PER Axis. Check the min and max of each axis point againt one another.
+
+ So it looks like:
+
+Instersects(A,B)=     (AminX <= BmaxX && AmaxX >= BminX)
+		 		   && (AminY <= BmaxY && AmaxY >= BminY)
+		 		   && (AminZ <= BmaxZ && AmaxZ >= BminZ)
+
+
+
+37) What is a Quaternion? Why is it useful?
     Show how to convert between the following:
     	Angle Axis     <=> Quat
     	Euler Angles   <=> Quat
