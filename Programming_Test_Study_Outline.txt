@@ -1193,6 +1193,25 @@ they are used in games to compose heirarchys of
 translations, rotations, and scalings in a concise
 and effecient way.
 
+Ex:
+[
+ e11  e12  e13
+ e21  e22  e23
+]
+
+Row order (C  array 0-indexed) 
+Better locality generally, this is whats mostly used. 
+All examples assume this.
+-------------
+a00(e11) a01(e12) a02(e13)
+a10(e21) a11(e22) a12(e23)
+
+
+Column Order (c array 0 indexed)
+-------------
+a00(e11) a10(e21) a01(e12)
+a11(e22) a02(e13) a12(e23)
+
 
 To translate an object by a vector v, each homogeneous vector p 
 (written in homogeneous coordinates) 
@@ -1300,13 +1319,34 @@ So the final matrix will have sections of the differing dimension
 
 4x2 Matrix * 2x3 Matrix =  4x3 Matrix
 
-
+NO DIVISION!
 
 Identity Matrix
-Diagnols of 1's
+Diags of 1's
 [
   1  0  0
   0  1  0
   0  0  1
+]
+
+
+
+Inverse Matrix
+For a 2x2 its easy, flip one set of diagnols
+then negate the other set, then multiply by a determinant.
+For other order matrix, a more complex method is needed.
+Look at Gauss-Jordan Elimination
+
+[
+  a  b
+  c  d
+        ] ^ -1
+
+=
+
+1 / (ad-bc) *
+[
+	d  -b
+   -c   a
 ]
 
