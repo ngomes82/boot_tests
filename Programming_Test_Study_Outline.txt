@@ -694,3 +694,13 @@ void RunOperatorOverloadTest()
 
 	std::cout << "overload: " << c3.real << "," << c3.imaginary << std::endl;
 }
+
+
+
+
+3D Math Specific Questions
+--------------------------------
+
+
+23)
+*********************
