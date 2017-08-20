@@ -4,13 +4,42 @@
 #include <vector>
 #include <iostream>
 #include <string>
-
+#include <random>
 //Forward decleration example
 
 //#include "SomeHeader.h"
 class SomeHeader; //Use this if all you have are ptr members!!
 
 //End Forward decleration example
+
+//Use XOR swap method that takes advantage of Commutative property.
+void XORSwap(char& x, char& y)
+{
+	x ^= y;
+	y ^= x;
+	x ^= y;
+}
+
+//Shuffle Example
+
+//use fisher yates shuffle, at each iteration
+//get a random index between iterator and end
+//then swap the objects at those indices.
+void Shuffle(std::string& strToShuffle)
+{
+	std::random_device rd; // obtain a random number from hardware
+    std::mt19937 eng(rd()); // seed the generator
+    
+	for(int i=0; i < strToShuffle.length() - 1; i++)
+	{
+		std::uniform_int_distribution<> distr(i, strToShuffle.length() - 1);
+		int j = distr(eng);
+		XORSwap(strToShuffle[i], strToShuffle[j]);
+	}
+}
+
+//End Shuffle Example
+
 
 //XOR Add
 
@@ -636,14 +665,6 @@ void ReverseStringInPlace(std::string& StrToReverse)
 	}
 }
 
-//Use XOR swap method that takes advantage of Commutative property.
-void XORSwap(char& x, char& y)
-{
-	x ^= y;
-	y ^= x;
-	x ^= y;
-}
-
 void swap(char& x, char& y)
 {
 	char temp;
@@ -681,6 +702,14 @@ void permute(std::string a, int l, int r)
 
 //TEST CASES 
 //--------------------
+void TestShuffle()
+{
+	std::string toShuffle = "abcdefghijklmnopqrstuvwxyz";
+	Shuffle(toShuffle);
+
+	std::cout << "shuffled: " << toShuffle << std::endl;
+}
+
 
 void TestXORAdd()
 {
@@ -848,6 +877,7 @@ int main()
 	RunBinaryTreeExample();
 	TestXORSwap();
 	TestXORAdd();
+	TestShuffle();
 
 	while (true)
 	{

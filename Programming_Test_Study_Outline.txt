@@ -1714,3 +1714,62 @@ void ReverseStringInPlace(std::string& StrToReverse)
 }
 
 
+48) Given a string, print out all  
+    permutations of that string.
+*********************
+
+//permutation, order matters so AB and BA are unique
+void permute(std::string a, int l, int r)
+{
+	int i;
+	if (l == r)
+	{
+		std::cout << a << std::endl; //you've reached the original length of the string, found a permutation!
+	}
+	else
+	{
+		for (i = l; i <= r; i++) //Gotta go through ever single child node,
+		{
+			swap(a[l], a[i]);		//swap a child node with its neighbor
+			permute(a, l + 1, r);   //permute the resultant string with substring to the right.
+			swap(a[l], a[i]);	    //back track
+		}
+	}
+}
+
+void TestPermutations()
+{
+	std::string permutationStr = "abcd";
+	permute(permutationStr, 0, permutationStr.length() - 1);
+}
+
+
+49) Given a graph and a start and destination node.
+    Find the shortest path to the ending node
+*********************
+
+Dijkstra Algo, A* Algo
+
+???????? TODO FINISH Question ????????
+
+
+
+
+50) Given an array give an algorithm to shuffle it.
+*********************
+
+//use fisher yates shuffle, at each iteration
+//get a random index between iterator and end
+//then swap the objects at those indices.
+void Shuffle(std::string& strToShuffle)
+{
+	std::random_device rd; // obtain a random number from hardware
+    std::mt19937 eng(rd()); // seed the generator
+    
+	for(int i=0; i < strToShuffle.length() - 1; i++)
+	{
+		std::uniform_int_distribution<> distr(i, strToShuffle.length() - 1);
+		int j = distr(eng);
+		XORSwap(strToShuffle[i], strToShuffle[j]);
+	}
+}
