@@ -1176,6 +1176,8 @@ public final void quatToMatrix(Quat4d q)
 	Translate, Scale, Rotate a Matrix, 
 	Add (same dimensions), 
 	Add (differing dimensions),
+	Transpose,
+	Multiply
 	Get the inverse 
 
 	Show how to extract:
@@ -1184,6 +1186,36 @@ public final void quatToMatrix(Quat4d q)
 	What is the Identity Matrix?
 *********************
 
+A matrix is a rectangular array of numbers or expressions
+organized in columns and rows. They are used to represent 
+linear transfomations in a generlized way. In this way
+they are used in games to compose heirarchys of
+translations, rotations, and scalings in a concise
+and effecient way.
 
 
+
+
+To translate an object by a vector v, each homogeneous vector p 
+(written in homogeneous coordinates) 
+can be multiplied by this translation matrix:
+
+[
+  1  0  0  v_x 
+  0  1  0  v_y 
+  0  0  1  v_z 
+  0  0  0  1
+]
+
+
+A scaling can be represented by a scaling matrix. 
+To scale an object by a vector v = (vx, vy, vz), 
+each point p = (px, py, pz) would need to be multiplied with this scaling matrix:
+
+[
+  v_x  0   0  0 
+   0  v_y  0  0 
+   0   0  v_z 0 
+   0   0   0  1
+]
 
