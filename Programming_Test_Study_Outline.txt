@@ -971,6 +971,13 @@ They satisfy the equation:
 	i2 = j2 = k2 = ijk = −1 
 
 
+Quaternions are generally represented in the form:
+
+a + bi + cj + dk
+
+where a, b, c, and d are real numbers, and i, j, and k are the fundamental quaternion units.
+
+
 When used in games they are used to accurately and succinctly
 represent rotations. They do this by reprensenting rotation 
 as a point along a unit 4D hyper-sphere. Because of this 
@@ -986,10 +993,175 @@ As an illustration
 			3 					3D 			 ||		3 Angles (x, y, z)     4 values P(x,y,z,w)
 
 
+Some use Quaternion definitions:
+
+Unrotated   < 0, 0, 0, 1 >
+Yaw 180     < 0, 0, 1, 0 > (rotation about z-axis)
+Pitch 180	< 0, 1, 0, 0 > (rotation about y-axis)
+Roll 180	< 1, 0, 0, 0 > (rotation about x-axis)
 
 
+From there you combine and normalizae quaternions to get every rotation possible.
+
+Multiplication is NON-Commutation ij = k  but ji = -k.
+Multiplying two quaternions COMPOSES their rotations (preform one then preform the other).
+Multiply by the inverse quaternion will return you to the original rotation.
 
 
+Table For multiplication
+
+×	1	i	j	k
+--------------------
+1|	1	i	j	k
+i|	i	−1	k	−j
+j|	j	−k	−1	i
+k|	k	j	−i	−1
 
 
+Example code for operations on a Quat:
 
+public final void mul(Quat4d q1,Quat4d q2) 
+{
+    x =  q1.x * q2.w + q1.y * q2.z - q1.z * q2.y + q1.w * q2.x;
+    y = -q1.x * q2.z + q1.y * q2.w + q1.z * q2.x + q1.w * q2.y;
+    z =  q1.x * q2.y - q1.y * q2.x + q1.z * q2.w + q1.w * q2.z;
+    w = -q1.x * q2.x - q1.y * q2.y - q1.z * q2.z + q1.w * q2.w;
+}
+
+public final void normalise() 
+{
+    double n = Math.sqrt(x*x + y*y + z*z + w*w);
+    x /= n;
+    y /= n;
+    z /= n;
+    w /= n;
+}
+
+public final void add(Quat4d q1,Quat4d q2) 
+{
+    x = q1.x + q2.x;
+    y = q1.y + q2.y;
+    z = q1.z + q2.z;
+    w = q1.w + q2.w;
+}
+
+public final void scale(double s){
+    x *= s;
+    y *= s;
+    z *= s;
+    w *= s;
+}
+  
+public final void inverse(Quat4d q1) 
+{
+    x = -q1.x;
+    y = -q1.y;
+    z = -q1.z;
+    w = q1.w;
+  }
+
+void AngleAxisToQuat(Axis, angle)
+{
+	qx = ax * sin(angle/2)
+	qy = ay * sin(angle/2)
+	qz = az * sin(angle/2)
+	qw = cos(angle/2)
+}
+
+void QuatToAngleAxis( Quat)
+{
+	//Watch for divide by zero
+
+	angle = 2 * acos(qw)
+	x = qx / sqrt(1-qw*qw)
+	y = qy / sqrt(1-qw*qw)
+	z = qz / sqrt(1-qw*qw)
+}
+
+void EulerToQuat()
+{
+	double c1 = Math.cos(yaw/2);
+    double s1 = Math.sin(yaw/2);
+    double c2 = Math.cos(pitch/2);
+    double s2 = Math.sin(pitch/2);
+    double c3 = Math.cos(roll/2);
+    double s3 = Math.sin(roll/2);
+    double c1c2 = c1*c2;
+    double s1s2 = s1*s2;
+
+    w =c1c2*c3 - s1s2*s3;
+  	x =c1c2*s3 + s1s2*c3;
+	y =s1*c2*c3 + c1*s2*s3;
+	z =c1*s2*c3 - s1*c2*s3;
+}
+
+public void QuatToEuler(Quat4d q1) 
+{
+	double test = q1.x*q1.y + q1.z*q1.w;
+
+	if (test > 0.499) 
+	{ 
+	   // singularity at north pole
+
+		yaw = 2 * atan2(q1.x,q1.w);
+		pitch = Math.PI/2;
+		roll = 0;
+		return;
+	}
+	if (test < -0.499) 
+	{ 
+	    // singularity at south pole
+
+		yaw = -2 * atan2(q1.x,q1.w);
+		pitch = - Math.PI/2;
+		roll = 0;
+		return;
+	}
+
+    double sqx = q1.x*q1.x;
+    double sqy = q1.y*q1.y;
+    double sqz = q1.z*q1.z;
+
+    yaw   = atan2(2*q1.y*q1.w-2*q1.x*q1.z , 1 - 2*sqy - 2*sqz);
+	pitch = asin(2*test);
+	roll  = atan2(2*q1.x*q1.w-2*q1.y*q1.z , 1 - 2*sqx - 2*sqz)
+}
+
+
+void MatrixToQuat(Matrix4f m1)
+{
+	w = Math.sqrt(1.0 + m1.m00 + m1.m11 + m1.m22) / 2.0;
+
+	double w4 = (4.0 * w);
+	x 		  = (m1.m21 - m1.m12) / w4 ;
+	y 		  = (m1.m02 - m1.m20) / w4 ;
+	z 		  = (m1.m10 - m1.m01) / w4 ;
+}
+
+public final void quatToMatrix(Quat4d q)
+{
+    double sqw = q.w*q.w;
+    double sqx = q.x*q.x;
+    double sqy = q.y*q.y;
+    double sqz = q.z*q.z;
+
+    // invs (inverse square length) is only required if quaternion is not already normalised
+    double invs = 1 / (sqx + sqy + sqz + sqw)
+    m00 = ( sqx - sqy - sqz + sqw)*invs ; // since sqw + sqx + sqy + sqz =1/invs*invs
+    m11 = (-sqx + sqy - sqz + sqw)*invs ;
+    m22 = (-sqx - sqy + sqz + sqw)*invs ;
+    
+    double tmp1 = q.x*q.y;
+    double tmp2 = q.z*q.w;
+    m10 = 2.0 * (tmp1 + tmp2)*invs ;
+    m01 = 2.0 * (tmp1 - tmp2)*invs ;
+    
+    tmp1 = q.x*q.z;
+    tmp2 = q.y*q.w;
+    m20 = 2.0 * (tmp1 - tmp2)*invs ;
+    m02 = 2.0 * (tmp1 + tmp2)*invs ;
+    tmp1 = q.y*q.z;
+    tmp2 = q.x*q.w;
+    m21 = 2.0 * (tmp1 + tmp2)*invs ;
+    m12 = 2.0 * (tmp1 - tmp2)*invs ;      
+}
