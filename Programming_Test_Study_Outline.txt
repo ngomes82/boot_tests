@@ -993,7 +993,7 @@ As an illustration
 			3 					3D 			 ||		3 Angles (x, y, z)     4 values P(x,y,z,w)
 
 
-Some use Quaternion definitions:
+Some use Quaternion definitions (assumes Z up):
 
 Unrotated   < 0, 0, 0, 1 >
 Yaw 180     < 0, 0, 1, 0 > (rotation about z-axis)
