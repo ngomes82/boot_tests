@@ -759,6 +759,7 @@ void RunOperatorOverloadTest()
 	Az = Az / |A|
 
 
+
 26) What is a vector dot product? How do you calculate it?
 *********************
 
@@ -777,7 +778,30 @@ A • B = |A| * |B| * cos(Θ)
 Where theta is the angle between the vectors.
 
 
+
 27) What is a vector cross product? How do you calculate it?
 *********************
+
+A cross product between two vectors gives you a third vector
+that is perpendicular to both. Since there can be two of these
+(upfacing and downfacing) you need to choose if the space is
+right hand oriented vs left hand oriented and choose accordingly.
+
+upface: 	AxB
+downface:   BxA == -AxB
+
+To calculate the Cross product:
+
+AxB = < Ay*Bz - Az*By, Az*Bx - Ax*Bz, Ax*By - Ay*Bx>
+
+
+In addition, it's geometric definition can be represented as:
+
+AxB = |A| * |B| * sin(Θ) * n
+
+where theta is the angle between A and B
+where n is the unit vector perpendicular to both A and B
+
+
 
 
