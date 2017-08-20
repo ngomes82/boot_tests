@@ -1357,3 +1357,96 @@ Data Structure Questions
 --------------------------------
 
 
+39) Describe what an array is? What are some of its properties and
+    complexities?
+*********************
+
+	An Array represents a set of elements stored in contigous memory.
+	Generally their size is fixed but there are structures that can
+	make dyanmically sized arrays. Elements are axed by using some offset (index)
+	that is added to the original pointer. A[0] is the first element.
+	Good for cache locality!
+
+	With no resizing
+	Insertion at an index is O(1)
+	Deletion or nulling at index is O(1)
+	Access at indes is O(1)
+
+	With rezising:
+	Insertion in middle while maintaining order with resize is O(n/2) (need to shift!)
+	Deletion from middle while maintaining order with resize is O(n/2) (need to shift!) 
+	Deletion where you don't care about order is O(1) by swapping with last element
+	then deleting last element and resize.
+
+
+
+
+40) Describe what a linked list is? How to implement? What are its pros and cons?
+    What are some operations on a linked list? Big O? How to find a cycle?
+*********************
+
+ A linked list represents data elements that are chained together using pointers.
+ They are not contiguous in memeory and are bad for cache locality.
+
+ class LinkedListNode
+{
+
+public:
+	LinkedListNode* Next;
+	//LinkedListNode* Previous; Doubly linked list.
+	int data;
+};
+
+
+Indexing O(n)  have to loop through
+Insert   O(1)  need to make sure not to lose a link while swapping next pointers.
+Delete   O(1)   ^^^ same caution as insert
+space    O(n)  each data element needs an additional pointer!
+
+
+//Discover if a linked list has a cycle by using the
+//Tortise and hare method. In a cyclic list the faster
+//Moving pointer has to eventually catch up to the slower moving pointer.
+bool HasLoop(LinkedListNode* First)
+{
+
+	if (First == nullptr)
+	{
+		return false;
+	}
+
+	LinkedListNode* slow;
+	LinkedListNode* fast;
+
+	slow = fast = First;
+
+	while (true)
+	{
+		slow = slow->Next;
+
+		if (fast->Next != nullptr)
+		{
+			fast = fast->Next->Next;
+		}
+		else
+		{
+			return false; //Found an end point
+		}
+
+		if (slow == nullptr || fast == nullptr)
+		{
+			return false; //Found an end point
+		}
+
+		if (slow == fast)
+		{
+			return true; //the faster pointer has caught up with the slower, found a cycle.
+		}
+	}
+}
+
+
+
+41) Describe a heap. How to implement it? Pros, Cons?
+    Operations and their complexities?
+*********************
