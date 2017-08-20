@@ -800,5 +800,79 @@ where theta is the angle between A and B
 where n is the unit vector perpendicular to both A and B
 
 
+28) Find the angle between two vectors (A,B).
+*********************
+
+First find the magnitudes of A and B (|A| |B|).
+Then calculate their dot product (D).
+
+Using the geometric definition of a dot product we can find the angle.
+
+D = |A|*|B|*cos(Θ)
+
+D / (|A||B|) = cos(Θ)
+
+Θ = arccos ( D / (|A||B|) )
+
+
+29) Multiply a single scalar value (s) into a vector (A)
+*********************
+
+s * A = < s * Ax, s * Ay, s * Az>
+
+
+30) Given three non-colinear points (Pa, Pb, Pc)
+	Create a representation of a plane.
+*********************
+
+	A plane requires a normal to represent its slope.
+	So first we need to get two vectors on the plane to do a cross product.
+
+	Va = Pa - Pb
+	Vc = Pc - Pb
+
+	Vn = Va x Vc
+
+	Normalize Vn, this is the normal of the plane.
+
+equation of a plane is:
+
+ax + by + cz = d    [a,b,c] is the normal
+
+Then use the normal vector and any point to find the final determinant d.
+
+
+31) Given a formula for a plane and a vector (V).
+	Find the projection of that vector onto the plane.
+*********************
+
+equation of a plane is:
+
+ax + by + cz = d
+
+So the plane normal Pn = <a,b,c>
+
+To find the projection:
+
+First we take the dot product of the
+vector and the normal to find the magnitude of the projection.
+(V • Pn)   <------ scalar representing magnitude.
+
+Then we subtract the original vector from the planes normal vector 
+to get the direction of the projection along the plane. 
+(Line up the tails, and find the vector between the heads)
+
+V - Pn   <--- vector representing direction along plane.
+
+
+Finally we combine the two giving us the final equation:
+
+Projection = (V - Pn) * (V • Pn)
+
+
+
+32) Given a plane 
+*********************
+
 
 
