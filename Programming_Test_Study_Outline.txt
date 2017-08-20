@@ -914,11 +914,42 @@ If the result is - then they overlap
 If the result is 0 then they are exactly touching.
 
 
-34) AABB to Sphere Overlap
+
+34) Point to AABB Overlap
 *********************
 
+Simply get the displacement from point to sphere center.
+Then check its magnitude against radius. 
 
-35) Point to AABB Overlap
+If larger then its not overlapping.
+If smaller then its overlapping.
+If 0 then its on the sphere.
+
+
+35) AABB to Sphere Overlap
+*********************
+
+You could check all points but this is overkill.
+Find the point CLOSEST to the sphere center.
+
+Then run a Point to AABB overlap on that closest point.
+
+If the box is not axis alinged, then you rotate the sphere
+such that it becomes axis alinged with the box, 
+then run the overlap test.
+
+
+
+36) What is a Quaternion? Why is it useful?
+    Show how to convert between the following:
+    	Angle Axis     <=> Quat
+    	Euler Angles   <=> Quat
+    	4x4 Rot Matrix <=> Quat
+
+    Describe these:
+    	Identity Quat
+    	How to combine Quats?
+    	How to find inverse of a Quat? Why its useful?
 *********************
 
 
