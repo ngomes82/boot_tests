@@ -1484,5 +1484,131 @@ bool HasLoop(LinkedListNode* First)
  for job tasking / scheduling when not all jobs can be run simultaneously.
 
 
-43) 
+
+43) Describe a Binary Search Tree. How to implement it? Pros, Cons?
+    Operations and their complexities?
 *********************
+
+A binary tree is a data structure where each node
+has at most two children (left child, right child)
+
+the left child must be of  less or equal   value than the parent.
+the right child must be of higher or equal value than the parent.
+
+they are useful because of their effecient searching and sorting. 
+Typically O( log n). However if insertion is done in perfect order 
+(1,2,3,4,5....) the tree becomes DEGENERATE and search approaches O(n).
+In order to fix this the tree needs to Self-Balance in some way.
+Look at a red/black tree for simple balancing (marks a node as red or black)
+
+
+
+class TreeNode 
+{
+public:
+	explicit TreeNode(int argKey) : key(argKey) { }
+
+    int key;
+    TreeNode *left;
+    TreeNode *right;
+};
+
+TreeNode* bst_insert(TreeNode*& root, int key) 
+{
+  if (!root)
+  {
+    root = new TreeNode(key);
+  }
+  else if (key < root->key)
+  {
+    root->left = bst_insert(root->left, key);
+   }
+  else
+  {
+    root->right = bst_insert(root->right, key);
+  }
+  
+  return root;
+}
+
+TreeNode* bst_search_recursively(int key, TreeNode* node)
+{
+     if (node == nullptr || node->key == key)
+     {
+         return node;
+     }
+
+     if( key < node->key )
+     {
+         return bst_search_recursively(key, node->left);
+     }
+     else 
+     {
+     	return bst_search_recursively(key, node->right);
+     }
+}
+
+void bst_traverse_in_order(TreeNode* node)
+{
+    if( node == nullptr)
+	{
+        return;
+    }
+    
+	//Changing order of access changes traverse type
+
+    //std::cout << node->key << ","; //Pre-Order
+
+    bst_traverse_in_order(node->left);
+    
+    std::cout << node->key << ",";  //In-Order (sorted)
+
+    bst_traverse_in_order(node->right);
+
+    //std::cout << node->key << ","; //Post-Order
+}
+
+void RunBinaryTreeExample()
+{
+	TreeNode* root = new TreeNode(5);
+
+	bst_insert(root, 2);
+	bst_insert(root, 50);
+	bst_insert(root, 1);
+	bst_insert(root, 7);
+	bst_insert(root, 9);
+
+	TreeNode* Found = bst_search_recursively(50, root);
+
+	if(Found != nullptr)
+	{
+		std::cout << "Bst search found: " << Found->key << std::endl;
+	}
+	else
+	{
+		std::cout << "bst search found nada" << std::endl;
+	}
+
+	Found = bst_search_recursively(90, root);
+
+	if(Found != nullptr)
+	{
+		std::cout << "Bst search found: " << Found->key << std::endl;
+	}
+	else
+	{
+		std::cout << "bst search found nada" << std::endl;
+	}
+
+	bst_traverse_in_order(root);
+	std::cout << std::endl;
+}
+
+
+44) Describe a Heap. How to implement? pros, cons?
+    Operations and their complexities
+*********************
+
+https://www.tutorialspoint.com/data_structures_algorithms/heap_data_structure.htm
+
+

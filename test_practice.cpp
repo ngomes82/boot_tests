@@ -12,6 +12,113 @@ class SomeHeader; //Use this if all you have are ptr members!!
 
 //End Forward decleration example
 
+//Binary Search Tree Example
+class TreeNode 
+{
+public:
+	explicit TreeNode(int argKey) : key(argKey) { }
+
+    int key;
+    TreeNode *left;
+    TreeNode *right;
+};
+
+TreeNode* bst_insert(TreeNode*& root, int key) 
+{
+  if (!root)
+  {
+    root = new TreeNode(key);
+  }
+  else if (key < root->key)
+  {
+    root->left = bst_insert(root->left, key);
+   }
+  else
+  {
+    root->right = bst_insert(root->right, key);
+  }
+  
+  return root;
+}
+
+TreeNode* bst_search_recursively(int key, TreeNode* node)
+{
+     if (node == nullptr || node->key == key)
+     {
+         return node;
+     }
+
+     if( key < node->key )
+     {
+         return bst_search_recursively(key, node->left);
+     }
+     else 
+     {
+     	return bst_search_recursively(key, node->right);
+     }
+}
+
+void bst_traverse_in_order(TreeNode* node)
+{
+    if( node == nullptr)
+	{
+        return;
+    }
+    
+	//Changing order of access changes traverse type
+
+    //std::cout << node->key << ","; //Pre-Order
+
+    bst_traverse_in_order(node->left);
+    
+    std::cout << node->key << ",";  //In-Order (sorted)
+
+    bst_traverse_in_order(node->right);
+
+    //std::cout << node->key << ","; //Post-Order
+}
+
+void RunBinaryTreeExample()
+{
+	TreeNode* root = new TreeNode(5);
+
+	bst_insert(root, 2);
+	bst_insert(root, 50);
+	bst_insert(root, 1);
+	bst_insert(root, 7);
+	bst_insert(root, 9);
+
+	TreeNode* Found = bst_search_recursively(50, root);
+
+	if(Found != nullptr)
+	{
+		std::cout << "Bst search found: " << Found->key << std::endl;
+	}
+	else
+	{
+		std::cout << "bst search found nada" << std::endl;
+	}
+
+	Found = bst_search_recursively(90, root);
+
+	if(Found != nullptr)
+	{
+		std::cout << "Bst search found: " << Found->key << std::endl;
+	}
+	else
+	{
+		std::cout << "bst search found nada" << std::endl;
+	}
+
+	bst_traverse_in_order(root);
+	std::cout << std::endl;
+}
+
+
+//End BST Example
+
+
+
 //Operator Overload Example
 
 class ComplexNum
@@ -686,6 +793,7 @@ int main()
 	TestIterExample();
 	TestTemplateExample();
 	TestOperatorOverload();
+	RunBinaryTreeExample();
 
 	while (true)
 	{
