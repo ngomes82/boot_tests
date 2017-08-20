@@ -1165,3 +1165,23 @@ public final void quatToMatrix(Quat4d q)
     m21 = 2.0 * (tmp1 + tmp2)*invs ;
     m12 = 2.0 * (tmp1 - tmp2)*invs ;      
 }
+
+
+
+38) Matrices What are they? Why are they useful?
+
+	Row major order vs column major order?
+
+	Show how to:
+	Translate, Scale, Rotate a Matrix, 
+	Add (same dimensions), 
+	Add (differing dimensions),
+	Get the inverse 
+
+	Show how to extract:
+	Position, euler angles, scale
+*********************
+
+
+
+
