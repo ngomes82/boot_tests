@@ -290,7 +290,7 @@ void ConstCorrectness()
   		 #include "HeaderFile.h"
 
   You simply decalre a class instead:
-  		class HeaderFile.h;
+  		class HeaderFile;
 
   This allows the compiler to just treat the uses of that class as a pointer
   in the current file when doing initial header compilation pass.
