@@ -12,6 +12,30 @@ class SomeHeader; //Use this if all you have are ptr members!!
 
 //End Forward decleration example
 
+//XOR Add
+
+//Add in a similar way that ALU's add.
+//use XOR and bitshift when there is a carry.
+int XORAdd(int x, int y)
+{
+    // Iterate till there is no carry  
+    while (y != 0)
+    {
+        // carry now contains common set bits of x and y
+        int carry = x & y;  
+ 
+        // Sum of bits of x and y where at least one of the bits is not set
+        x = x ^ y; 
+ 
+        // Carry is shifted by one so that adding it to x gives the required sum
+        y = carry << 1;
+    }
+    return x;
+}
+
+//END XOR ADD
+
+
 //Binary Search Tree Example
 class TreeNode 
 {
@@ -657,6 +681,17 @@ void permute(std::string a, int l, int r)
 
 //TEST CASES 
 //--------------------
+
+void TestXORAdd()
+{
+	int a = 50634;
+	int b = 7789345;
+
+	int result = XORAdd(a, b);
+
+	std::cout << "xor add: " << result << std::endl;
+}
+
 void TestXORSwap()
 {
 	char a = 'a';
@@ -812,6 +847,7 @@ int main()
 	TestOperatorOverload();
 	RunBinaryTreeExample();
 	TestXORSwap();
+	TestXORAdd();
 
 	while (true)
 	{
