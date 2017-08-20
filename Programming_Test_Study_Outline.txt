@@ -965,6 +965,30 @@ Instersects(A,B)=     (AminX <= BmaxX && AmaxX >= BminX)
     	How to find inverse of a Quat? Why its useful?
 *********************
 
+A quaternion is a complex number (real and imaginary) with 4 Dimensions.
+They satisfy the equation:
+
+	i2 = j2 = k2 = ijk = −1 
+
+
+When used in games they are used to accurately and succinctly
+represent rotations. They do this by reprensenting rotation 
+as a point along a unit 4D hyper-sphere. Because of this 
+they solve the issuue of Gimbal Lock (two axis align during a three axis rotation).
+
+As an illustration
+
+				Details Of space 			 				Ways to represent Rotation
+------------------------------------------------------------------------------------------------
+	# Axis of Rotation   Spatial Dimensions  ||  Euler Representation      Point on Unit Sphere
+			1 					2D			 ||	    1 Angle (x)			   2 values P(x,y)
+			2 					3D 			 ||		2 Angles (x, y)		   3 values P(x,y,z)
+			3 					3D 			 ||		3 Angles (x, y, z)     4 values P(x,y,z,w)
+
+
+
+
+
 
 
 
