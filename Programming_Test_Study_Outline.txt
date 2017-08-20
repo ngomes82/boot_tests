@@ -598,5 +598,67 @@ Class are generally larger and represent more functionality.
 	What are the pros and cons of using templates?
 *********************
 
+template<class t1>
+class TemplatedLinkedListNode
+{
 
+public:
+
+	explicit TemplatedLinkedListNode(t1 argData) : data(argData), Next(nullptr) {}
+
+	TemplatedLinkedListNode *Next;
+	t1 data;
+};
+
+void RunTemplateExample()
+{
+	TemplatedLinkedListNode<int> n1 (10);
+	TemplatedLinkedListNode<int> n2 (20);
+	TemplatedLinkedListNode<int> n3 (40);
+
+	n1.Next = &n2;
+	n2.Next = &n3;
+
+	TemplatedLinkedListNode<int>* current = &n1;
+
+	while(current != nullptr)
+	{
+		std::cout << "template node: " << current->data << " ";
+		current = current->Next;
+	}
+
+	std::cout << std::endl;
+}
+
+
+//Templates allow for the same code to be used for many differing types of objects
+//Increasing the code's modularity and usability.
+//The compiler duplicates the template code across all 
+//the types that it finds using the template. 
+//New code is generated for each new type that the compiler encounters.
+//This can cause both the compile time and executable size to increase significantly.
+
+
+
+21) Describe some integral data types and their sizes and max capacities
+*********************
+
+bool   (1 byte)  (8 bits)  [256 max 2^8]
+char   (1 byte)
+short  (2 bytes) (16 bits)  
+ushort (2 bytes)			[65,536 max 2^16]
+int    (4 bytes) (32 bits)  //At least 2 bytes, can be 4 bytes, compiler target specific
+float  (4 bytes) 
+uint   (4 bytes)			[4,294,967,296 max 2^32]
+long   (4 bytes) //At least 4 bytes
+ulong  (4 bytes)			
+double (8 bytes) (64 bits)
+int64  (8 bytes)
+long double (8 bytes)
+long long   (8 bytes) //at least 8 bytes
+long ulong  (8bytes)			[18,446,744,073,709,551,616 max 2^64]
+
+
+22) Give an example of operator overloading.
+*********************
 

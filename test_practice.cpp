@@ -12,6 +12,45 @@ class SomeHeader; //Use this if all you have are ptr members!!
 
 //End Forward decleration example
 
+
+//Template Example
+template<class t1>
+class TemplatedLinkedListNode
+{
+
+public:
+
+	explicit TemplatedLinkedListNode(t1 argData) : data(argData), Next(nullptr) {}
+
+	TemplatedLinkedListNode *Next;
+	t1 data;
+};
+
+void RunTemplateExample()
+{
+	TemplatedLinkedListNode<int> n1 (10);
+	TemplatedLinkedListNode<int> n2 (20);
+	TemplatedLinkedListNode<int> n3 (40);
+
+	n1.Next = &n2;
+	n2.Next = &n3;
+
+	TemplatedLinkedListNode<int>* current = &n1;
+
+	while(current != nullptr)
+	{
+		std::cout << "template node: " << current->data << " ";
+		current = current->Next;
+	}
+
+	std::cout << std::endl;
+}
+
+//End Template Example
+
+
+
+
 //Auto and Iterator Example
 
 void RunItrExample()
@@ -470,6 +509,11 @@ void permute(std::string a, int l, int r)
 //TEST CASES 
 //--------------------
 
+void TestTemplateExample()
+{
+	RunTemplateExample();
+}
+
 void TestIterExample()
 {
 	RunItrExample();
@@ -601,6 +645,7 @@ int main()
 	TestExampleTypeConversion();
 	TestExampleDelegate();
 	TestIterExample();
+	TestTemplateExample();
 
 	while (true)
 	{
