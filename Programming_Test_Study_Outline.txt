@@ -914,7 +914,11 @@ If the result is - then they overlap
 If the result is 0 then they are exactly touching.
 
 
-34)
+34) AABB to Sphere Overlap
+*********************
+
+
+35) Point to AABB Overlap
 *********************
 
 
