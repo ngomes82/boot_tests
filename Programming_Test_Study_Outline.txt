@@ -1611,4 +1611,42 @@ void RunBinaryTreeExample()
 
 https://www.tutorialspoint.com/data_structures_algorithms/heap_data_structure.htm
 
+???????? TODO FINISH Question ????????
+
+
+45) Describe a Hashtable. How to implement? pros, cons?
+    Operations and their complexities
+*********************
+
+
+???????? TODO FINISH Question ????????
+
+
+45) Describe a Dynamic Sized Array. How to implement? pros, cons?
+    Operations and their complexities
+*********************
+
+
+???????? TODO FINISH Question ????????
+
+
+
+
+Algorithm Specific Questions
+--------------------------------
+
+
+45) Give an algorithm to swap two values
+    without using a temporary variable.
+*********************
+
+//Use XOR swap method that takes advantage of Commutative property.
+void XORSwap(char& x, char& y)
+{
+	x ^= y;
+	y ^= x;
+	x ^= y;
+}
+
+
 

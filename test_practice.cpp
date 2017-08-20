@@ -114,7 +114,6 @@ void RunBinaryTreeExample()
 	std::cout << std::endl;
 }
 
-
 //End BST Example
 
 
@@ -613,6 +612,14 @@ void ReverseStringInPlace(std::string& StrToReverse)
 	}
 }
 
+//Use XOR swap method that takes advantage of Commutative property.
+void XORSwap(char& x, char& y)
+{
+	x ^= y;
+	y ^= x;
+	x ^= y;
+}
+
 void swap(char& x, char& y)
 {
 	char temp;
@@ -650,6 +657,16 @@ void permute(std::string a, int l, int r)
 
 //TEST CASES 
 //--------------------
+void TestXORSwap()
+{
+	char a = 'a';
+	char b = 'b';
+
+	XORSwap(a, b);
+
+	std::cout << a << "," << b << std::endl;
+}
+
 void TestOperatorOverload()
 {
 	RunOperatorOverloadTest();
@@ -794,6 +811,7 @@ int main()
 	TestTemplateExample();
 	TestOperatorOverload();
 	RunBinaryTreeExample();
+	TestXORSwap();
 
 	while (true)
 	{
