@@ -12,6 +12,41 @@ class SomeHeader; //Use this if all you have are ptr members!!
 
 //End Forward decleration example
 
+//Operator Overload Example
+
+class ComplexNum
+{
+
+private:
+	ComplexNum(){}
+
+public:
+	int real;
+	int imaginary;
+
+	ComplexNum(int argReal, int argImaginary): real(argReal), imaginary(argImaginary){}
+
+	ComplexNum operator + (ComplexNum const &obj)
+	{
+		ComplexNum res;
+		res.real 		= real + obj.real;
+		res.imaginary   = imaginary + obj.imaginary;
+
+		return res;
+	}
+};
+
+void RunOperatorOverloadTest()
+{
+	ComplexNum c1 (10, 5);
+	ComplexNum c2 (2, 4);
+
+	ComplexNum c3 = c1 + c2;
+
+	std::cout << "overload: " << c3.real << "," << c3.imaginary << std::endl;
+}
+//END Operator Overload Example
+
 
 //Template Example
 template<class t1>
@@ -508,6 +543,10 @@ void permute(std::string a, int l, int r)
 
 //TEST CASES 
 //--------------------
+void TestOperatorOverload()
+{
+	RunOperatorOverloadTest();
+}
 
 void TestTemplateExample()
 {
@@ -646,6 +685,7 @@ int main()
 	TestExampleDelegate();
 	TestIterExample();
 	TestTemplateExample();
+	TestOperatorOverload();
 
 	while (true)
 	{

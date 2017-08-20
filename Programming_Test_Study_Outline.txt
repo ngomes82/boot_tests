@@ -662,3 +662,35 @@ long ulong  (8bytes)			[18,446,744,073,709,551,616 max 2^64]
 22) Give an example of operator overloading.
 *********************
 
+
+class ComplexNum
+{
+
+private:
+	ComplexNum(){}
+
+public:
+	int real;
+	int imaginary;
+
+	ComplexNum(int argReal, int argImaginary): real(argReal), imaginary(argImaginary){}
+
+	ComplexNum operator + (ComplexNum const &obj)
+	{
+		ComplexNum res;
+		res.real 		= real + obj.real;
+		res.imaginary   = imaginary + obj.imaginary;
+
+		return res;
+	}
+};
+
+void RunOperatorOverloadTest()
+{
+	ComplexNum c1 (10, 5);
+	ComplexNum c2 (2, 4);
+
+	ComplexNum c3 = c1 + c2;
+
+	std::cout << "overload: " << c3.real << "," << c3.imaginary << std::endl;
+}
