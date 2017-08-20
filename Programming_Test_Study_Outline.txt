@@ -702,5 +702,82 @@ void RunOperatorOverloadTest()
 --------------------------------
 
 
-23)
+23) Describe what a vector is in 3d space?
 *********************
+	A vector is a representation of a direction with a magnitude. 
+	It has no origin and represents the same direction and magnitude 
+	throughout the entire space. 
+
+	You can add and subtract vectors to points to move them. 
+	Subtracting two points from one another gives a vector
+	representing the displacement.
+
+
+	P1 (xp1, yp1, zp1) 
+	P2 (xp2, yp2, zp2)
+
+	P2 - P1 = Vd (Displacement vector, pointing from P1 towards P2)
+
+
+	Adding two vectors places them head to tail with
+	the resulting addition being the vector that meets the combined tail to
+	the combined head. Subtracting two vectors places them tail to tail with
+	the resulting subtraction being the vector that meets from one head to the other.
+
+	A unit vector is a vector with  a total magnitude of 1.0.
+
+
+	V1 < x1, y1, z1 >  
+	V2 < x2, y2, z2 > 
+
+	V1 + V2 = <x1+x2, y1+y2, z1+z2>
+
+
+24) What is the magnitude of a vector? How do you compute it?
+*********************
+
+	The magnitude of a vector is the scalar length of the vector.
+	If mulitplied into a Unit Vector would give you the same vector
+	that you got the magnitude from.
+
+	To calculate the magnitude of a vector:
+
+	|A| = sqrt( Ax^2 + Ay^2 + Az^2)
+
+
+25) What does it mean to normalize a vector? How do you compute it?
+*********************
+	Normalizing a vector means to make the total magnitude of
+	the original vector length 1. This means the vector represents
+	purely a direction without any addition magnitue (unit length).
+
+	To compute it first you find the vector's Magnitude |A|.
+	Then you preform the following:
+
+	Ax = Ax / |A|
+	Ay = Ay / |A|
+	Az = Az / |A|
+
+
+26) What is a vector dot product? How do you calculate it?
+*********************
+
+The vector dot product takes two vectors and computes 
+the length of the projection of one onto the other.
+
+To calculate the Dot product:
+
+A • B = (Ax + Bx) * (Ay + By) * (Az + Bz)
+
+
+In addition, it's geometric defintion can be represented as:
+
+A • B = |A| * |B| * cos(Θ)
+
+Where theta is the angle between the vectors.
+
+
+27) What is a vector cross product? How do you calculate it?
+*********************
+
+
