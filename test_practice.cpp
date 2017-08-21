@@ -20,6 +20,139 @@ void XORSwap(char& x, char& y)
 	x ^= y;
 }
 
+
+//Binary Search example
+
+// A recursive binary search function. It returns location of x in
+// given array arr[l..r] is present, otherwise -1
+int binarySearch(int arr[], int l, int r, int x)
+{
+   if (r >= l)
+   {
+        int mid = l + (r - l)/2;
+ 
+        // If the element is present at the middle itself
+        if (arr[mid] == x)
+        {
+          return mid;
+        }
+ 
+        // If element is smaller than mid, then it can only be present
+        // in left subarray
+        if (arr[mid] > x)
+        { 
+        	return binarySearch(arr, l, mid-1, x);
+        }
+ 
+        // Else the element can only be present in right subarray
+        return binarySearch(arr, mid+1, r, x);
+   }
+ 
+   // We reach here when element is not present in array
+   return -1;
+}
+
+//END Binary search
+
+
+//Sort Example
+void intswap(int *xp, int *yp)
+{
+    int temp = *xp;
+    *xp = *yp;
+    *yp = temp;
+}
+
+void bubbleSort(int arr[], int n)
+{
+   int i, j;
+   for (i = 0; i < n-1; i++)      
+   {
+       // Last i elements are already in place   
+       for (j = 0; j < n-i-1; j++)
+       {
+           if (arr[j] > arr[j+1])
+           {
+              intswap(&arr[j], &arr[j+1]);
+           }
+       }
+   }
+}
+
+/* This function takes last element as pivot, places
+   the pivot element at its correct position in sorted
+    array, and places all smaller (smaller than pivot)
+   to left of pivot and all greater elements to right
+   of pivot */
+int partition (int arr[], int low, int high)
+{
+    int pivot = arr[high];    // pivot
+    int i = (low - 1);  // Index of smaller element
+ 
+    for (int j = low; j <= high- 1; j++)
+    {
+        // If current element is smaller than or
+        // equal to pivot
+        if (arr[j] <= pivot)
+        {
+            i++;    // increment index of smaller element
+            intswap(&arr[i], &arr[j]);
+        }
+    }
+    intswap(&arr[i + 1], &arr[high]);
+    return (i + 1);
+}
+ 
+/* The main function that implements QuickSort
+ arr[] --> Array to be sorted,
+  low  --> Starting index,
+  high  --> Ending index */
+void quickSort(int arr[], int low, int high)
+{
+    if (low < high)
+    {
+        /* pi is partitioning index, arr[p] is now
+           at right place */
+        int pi = partition(arr, low, high);
+ 
+        // Separately sort elements before
+        // partition and after partition
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+
+void printArray(int arr[], int size)
+{
+    int i;
+    for (i=0; i < size; i++)
+    {
+        std::cout << arr[i] << ",";
+    }
+
+    std::cout << std::endl;
+}
+
+
+void RunSortTest()
+{
+	int test1[] = {50,4,23,2,1,67,0,999 };
+	int test2[] = {50,4,23,2,1,67,0,999 };
+	int n 		= sizeof (test1) / sizeof(test1[0]);
+
+	bubbleSort(test1, n);
+	printArray(test1, n);
+
+	quickSort(test2, 0, n-1);
+	printArray(test2, n);
+
+	int index = binarySearch(test2, 0, n-1, 23);
+	std::cout << "found 23 at: " << index << std::endl;
+
+}
+//End Sort Example
+
+
 //Shuffle Example
 
 //use fisher yates shuffle, at each iteration
@@ -665,7 +798,7 @@ void ReverseStringInPlace(std::string& StrToReverse)
 	}
 }
 
-void swap(char& x, char& y)
+void charswap(char& x, char& y)
 {
 	char temp;
 	temp = x;
@@ -685,9 +818,9 @@ void permute(std::string a, int l, int r)
 	{
 		for (i = l; i <= r; i++) //Gotta go through ever single child node,
 		{
-			swap(a[l], a[i]);		//swap a child node with its neighbor
+			charswap(a[l], a[i]);		//swap a child node with its neighbor
 			permute(a, l + 1, r);   //permute the resultant string with substring to the right.
-			swap(a[l], a[i]);	    //back track
+			charswap(a[l], a[i]);	    //back track
 		}
 	}
 }
@@ -878,6 +1011,7 @@ int main()
 	TestXORSwap();
 	TestXORAdd();
 	TestShuffle();
+	RunSortTest();
 
 	while (true)
 	{
