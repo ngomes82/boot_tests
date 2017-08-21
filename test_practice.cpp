@@ -756,6 +756,9 @@ class LinkedListNode
 {
 
 public:
+
+	LinkedListNode() : data(-1), Next(nullptr) {}
+
 	LinkedListNode* Next;
 	//LinkedListNode* Previous; Doubly linked list.
 	int data;
