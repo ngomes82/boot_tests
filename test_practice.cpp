@@ -20,8 +20,30 @@ void XORSwap(char& x, char& y)
 	x ^= y;
 }
 
+//Palindrome examble
 
-//Binary Search example
+bool IsPalindrome(std::string toCheck)
+{
+	int i=0;
+	int j= toCheck.length()-1;
+
+	while(i<j)
+	{
+		if(toCheck[i] != toCheck[j])
+		{
+			return false;
+		}
+
+		i++;
+		j--;
+	}
+
+	return true;
+}
+
+//end
+
+
 
 
 //fibonacci number
@@ -35,6 +57,9 @@ int fib(int n)
 
   return fib(n-1) + fib(n-2);
 }
+
+//Binary Search example
+
 
 // A recursive binary search function. It returns location of x in
 // given array arr[l..r] is present, otherwise -1
@@ -848,6 +873,22 @@ void permute(std::string a, int l, int r)
 
 //TEST CASES 
 //--------------------
+void TestPalindrom()
+{
+	std::string palin    = "racecar";
+	std::string notPalin = "jsutastring";
+
+	if( IsPalindrome(palin) )
+	{
+		std::cout << "first string is palin ";
+	}
+
+	if( !IsPalindrome(notPalin) )
+	{
+		std::cout << "second string not palin!"<<std::endl;
+	}
+}
+
 void TestShuffle()
 {
 	std::string toShuffle = "abcdefghijklmnopqrstuvwxyz";
@@ -1027,6 +1068,8 @@ int main()
 	RunSortTest();
 
 	std::cout <<  "fib: " << fib(9) << std::endl;
+
+	TestPalindrom();
 
 	while (true)
 	{
