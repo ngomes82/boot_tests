@@ -23,6 +23,19 @@ void XORSwap(char& x, char& y)
 
 //Binary Search example
 
+
+//fibonacci number
+int fib(int n)
+{
+
+  if (n <= 1)
+  {
+      return n;
+  }
+
+  return fib(n-1) + fib(n-2);
+}
+
 // A recursive binary search function. It returns location of x in
 // given array arr[l..r] is present, otherwise -1
 int binarySearch(int arr[], int l, int r, int x)
@@ -1012,6 +1025,8 @@ int main()
 	TestXORAdd();
 	TestShuffle();
 	RunSortTest();
+
+	std::cout <<  "fib: " << fib(9) << std::endl;
 
 	while (true)
 	{
