@@ -10,9 +10,9 @@
 //#include "SomeHeader.h"
 class SomeHeader; //Use this if all you have are ptr members!!
 
-//End Forward decleration example
+				  //End Forward decleration example
 
-//Use XOR swap method that takes advantage of Commutative property.
+				  //Use XOR swap method that takes advantage of Commutative property.
 void XORSwap(char& x, char& y)
 {
 	x ^= y;
@@ -24,12 +24,12 @@ void XORSwap(char& x, char& y)
 
 bool IsPalindrome(std::string toCheck)
 {
-	int i=0;
-	int j= toCheck.length()-1;
+	int i = 0;
+	int j = toCheck.length() - 1;
 
-	while(i<j)
+	while (i<j)
 	{
-		if(toCheck[i] != toCheck[j])
+		if (toCheck[i] != toCheck[j])
 		{
 			return false;
 		}
@@ -50,12 +50,12 @@ bool IsPalindrome(std::string toCheck)
 int fib(int n)
 {
 
-  if (n <= 1)
-  {
-      return n;
-  }
+	if (n <= 1)
+	{
+		return n;
+	}
 
-  return fib(n-1) + fib(n-2);
+	return fib(n - 1) + fib(n - 2);
 }
 
 //Binary Search example
@@ -65,29 +65,29 @@ int fib(int n)
 // given array arr[l..r] is present, otherwise -1
 int binarySearch(int arr[], int l, int r, int x)
 {
-   if (r >= l)
-   {
-        int mid = l + (r - l)/2;
- 
-        // If the element is present at the middle itself
-        if (arr[mid] == x)
-        {
-          return mid;
-        }
- 
-        // If element is smaller than mid, then it can only be present
-        // in left subarray
-        if (arr[mid] > x)
-        { 
-        	return binarySearch(arr, l, mid-1, x);
-        }
- 
-        // Else the element can only be present in right subarray
-        return binarySearch(arr, mid+1, r, x);
-   }
- 
-   // We reach here when element is not present in array
-   return -1;
+	if (r >= l)
+	{
+		int mid = l + (r - l) / 2;
+
+		// If the element is present at the middle itself
+		if (arr[mid] == x)
+		{
+			return mid;
+		}
+
+		// If element is smaller than mid, then it can only be present
+		// in left subarray
+		if (arr[mid] > x)
+		{
+			return binarySearch(arr, l, mid - 1, x);
+		}
+
+		// Else the element can only be present in right subarray
+		return binarySearch(arr, mid + 1, r, x);
+	}
+
+	// We reach here when element is not present in array
+	return -1;
 }
 
 //END Binary search
@@ -96,95 +96,95 @@ int binarySearch(int arr[], int l, int r, int x)
 //Sort Example
 void intswap(int *xp, int *yp)
 {
-    int temp = *xp;
-    *xp = *yp;
-    *yp = temp;
+	int temp = *xp;
+	*xp = *yp;
+	*yp = temp;
 }
 
 void bubbleSort(int arr[], int n)
 {
-   int i, j;
-   for (i = 0; i < n-1; i++)      
-   {
-       // Last i elements are already in place   
-       for (j = 0; j < n-i-1; j++)
-       {
-           if (arr[j] > arr[j+1])
-           {
-              intswap(&arr[j], &arr[j+1]);
-           }
-       }
-   }
+	int i, j;
+	for (i = 0; i < n - 1; i++)
+	{
+		// Last i elements are already in place   
+		for (j = 0; j < n - i - 1; j++)
+		{
+			if (arr[j] > arr[j + 1])
+			{
+				intswap(&arr[j], &arr[j + 1]);
+			}
+		}
+	}
 }
 
 /* This function takes last element as pivot, places
-   the pivot element at its correct position in sorted
-    array, and places all smaller (smaller than pivot)
-   to left of pivot and all greater elements to right
-   of pivot */
-int partition (int arr[], int low, int high)
+the pivot element at its correct position in sorted
+array, and places all smaller (smaller than pivot)
+to left of pivot and all greater elements to right
+of pivot */
+int partition(int arr[], int low, int high)
 {
-    int pivot = arr[high];    // pivot
-    int i = (low - 1);  // Index of smaller element
- 
-    for (int j = low; j <= high- 1; j++)
-    {
-        // If current element is smaller than or
-        // equal to pivot
-        if (arr[j] <= pivot)
-        {
-            i++;    // increment index of smaller element
-            intswap(&arr[i], &arr[j]);
-        }
-    }
-    intswap(&arr[i + 1], &arr[high]);
-    return (i + 1);
+	int pivot = arr[high];    // pivot
+	int i = (low - 1);  // Index of smaller element
+
+	for (int j = low; j <= high - 1; j++)
+	{
+		// If current element is smaller than or
+		// equal to pivot
+		if (arr[j] <= pivot)
+		{
+			i++;    // increment index of smaller element
+			intswap(&arr[i], &arr[j]);
+		}
+	}
+	intswap(&arr[i + 1], &arr[high]);
+	return (i + 1);
 }
- 
+
 /* The main function that implements QuickSort
- arr[] --> Array to be sorted,
-  low  --> Starting index,
-  high  --> Ending index */
+arr[] --> Array to be sorted,
+low  --> Starting index,
+high  --> Ending index */
 void quickSort(int arr[], int low, int high)
 {
-    if (low < high)
-    {
-        /* pi is partitioning index, arr[p] is now
-           at right place */
-        int pi = partition(arr, low, high);
- 
-        // Separately sort elements before
-        // partition and after partition
-        quickSort(arr, low, pi - 1);
-        quickSort(arr, pi + 1, high);
-    }
+	if (low < high)
+	{
+		/* pi is partitioning index, arr[p] is now
+		at right place */
+		int pi = partition(arr, low, high);
+
+		// Separately sort elements before
+		// partition and after partition
+		quickSort(arr, low, pi - 1);
+		quickSort(arr, pi + 1, high);
+	}
 }
 
 void printArray(int arr[], int size)
 {
-    int i;
-    for (i=0; i < size; i++)
-    {
-        std::cout << arr[i] << ",";
-    }
+	int i;
+	for (i = 0; i < size; i++)
+	{
+		std::cout << arr[i] << ",";
+	}
 
-    std::cout << std::endl;
+	std::cout << std::endl;
 }
 
 
 void RunSortTest()
 {
-	int test1[] = {50,4,23,2,1,67,0,999 };
-	int test2[] = {50,4,23,2,1,67,0,999 };
-	int n 		= sizeof (test1) / sizeof(test1[0]);
+	int test1[] = { 50,4,23,2,1,67,0,999 };
+	int test2[] = { 50,4,23,2,1,67,0,999 };
+	int n = sizeof(test1) / sizeof(test1[0]);
 
 	bubbleSort(test1, n);
 	printArray(test1, n);
 
-	quickSort(test2, 0, n-1);
+	quickSort(test2, 0, n - 1);
 	printArray(test2, n);
 
-	int index = binarySearch(test2, 0, n-1, 23);
+	int index = binarySearch(test2, 0, n - 1, 23);
 	std::cout << "found 23 at: " << index << std::endl;
 
 }
@@ -199,9 +199,9 @@ void RunSortTest()
 void Shuffle(std::string& strToShuffle)
 {
 	std::random_device rd; // obtain a random number from hardware
-    std::mt19937 eng(rd()); // seed the generator
-    
-	for(int i=0; i < strToShuffle.length() - 1; i++)
+	std::mt19937 eng(rd()); // seed the generator
+
+	for (int i = 0; i < strToShuffle.length() - 1; i++)
 	{
 		std::uniform_int_distribution<> distr(i, strToShuffle.length() - 1);
 		int j = distr(eng);
@@ -218,88 +218,88 @@ void Shuffle(std::string& strToShuffle)
 //use XOR and bitshift when there is a carry.
 int XORAdd(int x, int y)
 {
-    // Iterate till there is no carry  
-    while (y != 0)
-    {
-        // carry now contains common set bits of x and y
-        int carry = x & y;  
- 
-        // Sum of bits of x and y where at least one of the bits is not set
-        x = x ^ y; 
- 
-        // Carry is shifted by one so that adding it to x gives the required sum
-        y = carry << 1;
-    }
-    return x;
+	// Iterate till there is no carry  
+	while (y != 0)
+	{
+		// carry now contains common set bits of x and y
+		int carry = x & y;
+
+		// Sum of bits of x and y where at least one of the bits is not set
+		x = x ^ y;
+
+		// Carry is shifted by one so that adding it to x gives the required sum
+		y = carry << 1;
+	}
+	return x;
 }
 
 //END XOR ADD
 
 
 //Binary Search Tree Example
-class TreeNode 
+class TreeNode
 {
 public:
-	explicit TreeNode(int argKey) : key(argKey) { }
+	explicit TreeNode(int argKey) : key(argKey), left(nullptr), right(nullptr) { }
 
-    int key;
-    TreeNode *left;
-    TreeNode *right;
+	int key;
+	TreeNode *left;
+	TreeNode *right;
 };
 
-TreeNode* bst_insert(TreeNode*& root, int key) 
+TreeNode* bst_insert(TreeNode*& root, int key)
 {
-  if (!root)
-  {
-    root = new TreeNode(key);
-  }
-  else if (key < root->key)
-  {
-    root->left = bst_insert(root->left, key);
-   }
-  else
-  {
-    root->right = bst_insert(root->right, key);
-  }
-  
-  return root;
+	if (root == nullptr)
+	{
+		root = new TreeNode(key);
+	}
+	else if (key < root->key)
+	{
+		root->left = bst_insert(root->left, key);
+	}
+	else
+	{
+		root->right = bst_insert(root->right, key);
+	}
+
+	return root;
 }
 
 TreeNode* bst_search_recursively(int key, TreeNode* node)
 {
-     if (node == nullptr || node->key == key)
-     {
-         return node;
-     }
+	if (node == nullptr || node->key == key)
+	{
+		return node;
+	}
 
-     if( key < node->key )
-     {
-         return bst_search_recursively(key, node->left);
-     }
-     else 
-     {
-     	return bst_search_recursively(key, node->right);
-     }
+	if (key < node->key)
+	{
+		return bst_search_recursively(key, node->left);
+	}
+	else
+	{
+		return bst_search_recursively(key, node->right);
+	}
 }
 
 void bst_traverse_in_order(TreeNode* node)
 {
-    if( node == nullptr)
+	if (node == nullptr)
 	{
-        return;
-    }
-    
+		return;
+	}
+
 	//Changing order of access changes traverse type
 
-    //std::cout << node->key << ","; //Pre-Order
+	//std::cout << node->key << ","; //Pre-Order
 
-    bst_traverse_in_order(node->left);
-    
-    std::cout << node->key << ",";  //In-Order (sorted)
+	bst_traverse_in_order(node->left);
 
-    bst_traverse_in_order(node->right);
+	std::cout << node->key << ",";  //In-Order (sorted)
 
-    //std::cout << node->key << ","; //Post-Order
+	bst_traverse_in_order(node->right);
+
+	//std::cout << node->key << ","; //Post-Order
 }
 
 void RunBinaryTreeExample()
@@ -314,7 +314,7 @@ void RunBinaryTreeExample()
 
 	TreeNode* Found = bst_search_recursively(50, root);
 
-	if(Found != nullptr)
+	if (Found != nullptr)
 	{
 		std::cout << "Bst search found: " << Found->key << std::endl;
 	}
@@ -325,7 +325,7 @@ void RunBinaryTreeExample()
 
 	Found = bst_search_recursively(90, root);
 
-	if(Found != nullptr)
+	if (Found != nullptr)
 	{
 		std::cout << "Bst search found: " << Found->key << std::endl;
 	}
@@ -348,19 +348,19 @@ class ComplexNum
 {
 
 private:
-	ComplexNum(){}
+	ComplexNum() {}
 
 public:
 	int real;
 	int imaginary;
 
-	ComplexNum(int argReal, int argImaginary): real(argReal), imaginary(argImaginary){}
+	ComplexNum(int argReal, int argImaginary) : real(argReal), imaginary(argImaginary) {}
 
 	ComplexNum operator + (ComplexNum const &obj)
 	{
 		ComplexNum res;
-		res.real 		= real + obj.real;
-		res.imaginary   = imaginary + obj.imaginary;
+		res.real = real + obj.real;
+		res.imaginary = imaginary + obj.imaginary;
 
 		return res;
 	}
@@ -368,8 +368,8 @@ public:
 
 void RunOperatorOverloadTest()
 {
-	ComplexNum c1 (10, 5);
-	ComplexNum c2 (2, 4);
+	ComplexNum c1(10, 5);
+	ComplexNum c2(2, 4);
 
 	ComplexNum c3 = c1 + c2;
 
@@ -393,16 +393,16 @@ public:
 
 void RunTemplateExample()
 {
-	TemplatedLinkedListNode<int> n1 (10);
-	TemplatedLinkedListNode<int> n2 (20);
-	TemplatedLinkedListNode<int> n3 (40);
+	TemplatedLinkedListNode<int> n1(10);
+	TemplatedLinkedListNode<int> n2(20);
+	TemplatedLinkedListNode<int> n3(40);
 
 	n1.Next = &n2;
 	n2.Next = &n3;
 
 	TemplatedLinkedListNode<int>* current = &n1;
 
-	while(current != nullptr)
+	while (current != nullptr)
 	{
 		std::cout << "template node: " << current->data << " ";
 		current = current->Next;
@@ -426,9 +426,9 @@ void RunItrExample()
 	myIntVec.push_back(5);
 	myIntVec.push_back(8);
 
-	for( auto iterator = myIntVec.begin(); 
-		 iterator != myIntVec.end(); 
-		 iterator++ )
+	for (auto iterator = myIntVec.begin();
+		iterator != myIntVec.end();
+		iterator++)
 	{
 		std::cout << (*iterator) << " ";
 	}
@@ -453,7 +453,7 @@ float ExampleDelegateConcreteFunc2(float arg)
 	return (arg + 20.0f);
 }
 
-typedef float (*ExampleDelegate) (float arg);
+typedef float(*ExampleDelegate) (float arg);
 
 
 void ExampleDelegateRun()
@@ -480,7 +480,7 @@ public:
 	int data;
 
 	//Since explicit is not used the compiler can do implicit conversions!
-	ExampleImplicitConversion( int n ) : data(n) { }
+	ExampleImplicitConversion(int n) : data(n) { }
 };
 
 class ExampleExplicitConstructor
@@ -490,23 +490,23 @@ public:
 	int data;
 
 	//Since explicit is used no implicit conversions!
-	explicit ExampleExplicitConstructor( int n ) : data(n) { }
+	explicit ExampleExplicitConstructor(int n) : data(n) { }
 };
 
 void ConversionExamples()
 {
 	//Valid, can use constructor implicitly.
 	//But will cause '6' to be converted to ASCII int val 54.
-	ExampleImplicitConversion ImplicitConvert = '6'; 
+	ExampleImplicitConversion ImplicitConvert = '6';
 
 	std::cout << "Implicit Convert: " << ImplicitConvert.data << std::endl;
 
 	//INVALID, constructor is explicit!!!
 	//ExampleExplicitConstructor ExplicitConvert = '6'; 
-	
+
 	//Need to use constructor explicitly!!!!
-	ExampleExplicitConstructor ExplicitConstruct(6); 
-	
+	ExampleExplicitConstructor ExplicitConstruct(6);
+
 	std::cout << "Explicit Constructor: " << ExplicitConstruct.data << std::endl;
 
 
@@ -527,10 +527,10 @@ void ConversionExamples()
 
 
 
-	int testInt     = 10;
+	int testInt = 10;
 	float testFloat = 0.0f;
- 
-	int* testIntPtr     = &testInt;
+
+	int* testIntPtr = &testInt;
 	float* testFloatPrt = &testFloat;
 
 	testFloat = static_cast<float>(testInt); //Valid, you can go from float to int
@@ -565,22 +565,22 @@ void ConstCorrectness()
 	int i5 = 4;
 	int i6 = 5;
 
-	const int* p1 		= &i1;		  //Pointer to constant int, Value pointed to by p1 CAN'T change.
-	int* const p2 		= &i2;		  //Constant Pointer to an int, location pointed by p2 CAN'T change.
+	const int* p1 = &i1;		  //Pointer to constant int, Value pointed to by p1 CAN'T change.
+	int* const p2 = &i2;		  //Constant Pointer to an int, location pointed by p2 CAN'T change.
 	const int* const p3 = &i3;		  //Constant Pointer to a constant int, Value and Location CAN'T Change.
-	int const* p4		= &i4;		  // Same as const int*  , but looks and reads weird...
+	int const* p4 = &i4;		  // Same as const int*  , but looks and reads weird...
 	const int const* p5 = &i5;		  //This works, but is redundant. Duplicate const decleration!
 	const int const* const p6 = &i6;  //This works, but is redundant. Duplicate const decleration!
 
 
-//	(*p1) = 20;  //INVALID
-	p1 	  = &i2; //VALID
+									  //	(*p1) = 20;  //INVALID
+	p1 = &i2; //VALID
 
 	(*p2) = 20;  //VALID
-//	p2	  = &i1; //INVALID
+				 //	p2	  = &i1; //INVALID
 
-//	(*p3) = 900; //INVALID
-//	p3 	  = &i4; //INVALID
+				 //	(*p3) = 900; //INVALID
+				 //	p3 	  = &i4; //INVALID
 }
 //End const correctness example
 
@@ -590,11 +590,11 @@ void ConstCorrectness()
 void StringIntConvertUsingSTD()
 {
 
- 	std::string str = std::to_string(20);
+	std::string str = std::to_string(20);
 
- 	std::cout << str << std::endl;
+	std::cout << str << std::endl;
 
-	int i  = std::stoi("900");
+	int i = std::stoi("900");
 
 	std::cout << i << std::endl;
 }
@@ -647,13 +647,15 @@ public:
 };
 
 //Need to Provide implementation of pure virtual destructor
-IExampleInterface::~IExampleInterface(){}
+IExampleInterface::~IExampleInterface() {}
 
 class DeriveInterfaceExample : IExampleInterface
 {
 	//This is required to be implemented!
-	void ExamplePureVirtualFunc () 
-	{ std::cout << "Example Interface Implementation" << std::endl; }
+	void ExamplePureVirtualFunc()
+	{
+		std::cout << "Example Interface Implementation" << std::endl;
+	}
 };
 
 //END Interface Example
@@ -662,38 +664,38 @@ class DeriveInterfaceExample : IExampleInterface
 //Constructor Example in C++
 class ConstructorExample
 {
-	public:
-		int Count;
-		int* ExampleArr;
+public:
+	int Count;
+	int* ExampleArr;
 
-		//Example of an initialization list, Order of member decleration is order of initialization.
-		ConstructorExample() : Count( 5 ), ExampleArr( new int[Count] )
+	//Example of an initialization list, Order of member decleration is order of initialization.
+	ConstructorExample() : Count(5), ExampleArr(new int[Count])
+	{
+		std::cout << "Default Constructor Called" << std::endl;
+	}
+
+	//Example of an assignment initialization. Initialization occurs just before body of constructor
+	//then constructor body executes and assignments occur.
+	ConstructorExample(int ArgCount)
+	{
+		std::cout << "Second Constructor Called" << std::endl;
+
+		Count = ArgCount;
+		ExampleArr = new int[Count];
+	}
+
+
+	//Copy Constructor, used when assigning or creating 
+	//an instance of ConstructionExample using ANOTHER instance of ConstructionExample.
+	ConstructorExample(const ConstructorExample& Other) : Count(Other.Count), ExampleArr(new int[Count])
+	{
+		std::cout << "Copy Constructor Called" << std::endl;
+
+		for (int i = 0; i<Count; i++)
 		{
-			std::cout << "Default Constructor Called" << std::endl;
+			ExampleArr[i] = 444;
 		}
-
-		//Example of an assignment initialization. Initialization occurs just before body of constructor
-		//then constructor body executes and assignments occur.
-		ConstructorExample(int ArgCount)
-		{
-			std::cout << "Second Constructor Called" << std::endl;
-
-			Count = ArgCount;
-			ExampleArr = new int[Count];
-		}
-
-
-		//Copy Constructor, used when assigning or creating 
-		//an instance of ConstructionExample using ANOTHER instance of ConstructionExample.
-		ConstructorExample(const ConstructorExample& Other) : Count( Other.Count ), ExampleArr( new int[Count] )
-		{
-			std::cout << "Copy Constructor Called" << std::endl;
-
-			for(int i=0; i<Count; i++)
-			{
-				ExampleArr[i] = 444;
-			}
-		}
+	}
 };
 //End Constructor Example
 
@@ -704,7 +706,7 @@ class BaseExample
 {
 
 public:
-	
+
 	BaseExample(int ArgData)
 	{
 		data = ArgData;
@@ -713,14 +715,14 @@ public:
 	int data;
 
 	//Declaring a virtual function.
-	virtual int ExampleOverride() { return 10;  }
+	virtual int ExampleOverride() { return 10; }
 };
 
 class ChildExample : BaseExample
 {
 public:
 	//Calling the base class constructor. Specific name needs to be used since c++ supports multiple inheritance. No Super.
-	ChildExample(int ArgChildData) : BaseExample(ArgChildData){} 
+	ChildExample(int ArgChildData) : BaseExample(ArgChildData) {}
 
 	//Overriding a parent function, also calling the parent. Specific name needs to be used due to multiple inheritance. No Super.
 	int ExampleOverride() override { return BaseExample::ExampleOverride() + 10; }
@@ -735,7 +737,7 @@ public:
 	FinalChildExample() : ChildExample(5) {}
 
 	//final function, the function can not be overridden by children (which can't exist b/c class is final, but this is just an example).
-	int ExampleOverride() final override { return ChildExample::ExampleOverride() + 10; } 
+	int ExampleOverride() final override { return ChildExample::ExampleOverride() + 10; }
 };
 
 
@@ -810,7 +812,7 @@ std::string ReverseString(std::string StrToReverse)
 
 	for (int i = StrToReverse.length() - 1; i >= 0; i--)
 	{
-		int SwapIndex		  = (StrToReverse.length() - 1) - i;
+		int SwapIndex = (StrToReverse.length() - 1) - i;
 		ToReturn[SwapIndex] = StrToReverse[i];
 	}
 
@@ -825,10 +827,10 @@ void ReverseStringInPlace(std::string& StrToReverse)
 {
 	int right = StrToReverse.length() - 1;
 	int left = 0;
-	while (left < right) 
+	while (left < right)
 	{
 		StrToReverse[right] ^= StrToReverse[left];
-		StrToReverse[left]  ^= StrToReverse[right];
+		StrToReverse[left] ^= StrToReverse[right];
 		StrToReverse[right] ^= StrToReverse[left];
 
 		++left;
@@ -875,17 +877,17 @@ void permute(std::string a, int l, int r)
 //--------------------
 void TestPalindrom()
 {
-	std::string palin    = "racecar";
+	std::string palin = "racecar";
 	std::string notPalin = "jsutastring";
 
-	if( IsPalindrome(palin) )
+	if (IsPalindrome(palin))
 	{
 		std::cout << "first string is palin ";
 	}
 
-	if( !IsPalindrome(notPalin) )
+	if (!IsPalindrome(notPalin))
 	{
-		std::cout << "second string not palin!"<<std::endl;
+		std::cout << "second string not palin!" << std::endl;
 	}
 }
 
@@ -959,8 +961,8 @@ void TestPassing()
 
 void TestInterface()
 {
-	DeriveInterfaceExample* DerivedExample 		= new DeriveInterfaceExample();
-	IExampleInterface* 		ExampleInterface    = (IExampleInterface*) DerivedExample;
+	DeriveInterfaceExample* DerivedExample = new DeriveInterfaceExample();
+	IExampleInterface* 		ExampleInterface = (IExampleInterface*)DerivedExample;
 
 	ExampleInterface->ExamplePureVirtualFunc();
 
@@ -970,7 +972,7 @@ void TestInterface()
 void TestConstructor()
 {
 	ConstructorExample* ConstructorInstance = new ConstructorExample();
-	
+
 	std::cout << ConstructorInstance->Count << std::endl;
 	std::cout << ConstructorInstance->ExampleArr[3] << std::endl;
 
@@ -1016,7 +1018,7 @@ void TestLinkedList()
 	LLNodeB->Next = LLNodeC;
 	LLNodeC->Next = LLNodeD;
 
-	if( HasLoop(LLNodeA) )
+	if (HasLoop(LLNodeA))
 	{
 		std::cout << "Test1: Found a loop" << std::endl;
 	}
@@ -1027,7 +1029,7 @@ void TestLinkedList()
 
 	LLNodeD->Next = LLNodeA;
 
-	if( HasLoop(LLNodeA) )
+	if (HasLoop(LLNodeA))
 	{
 		std::cout << "Test2: Found a loop" << std::endl;
 	}
@@ -1046,8 +1048,8 @@ void TestLinkedList()
 
 
 int main()
-{	
-	
+{
+
 	TestReverseString();
 	TestReverseSrtingInPlace();
 	TestPermutations();
@@ -1067,7 +1069,7 @@ int main()
 	TestShuffle();
 	RunSortTest();
 
-	std::cout <<  "fib: " << fib(9) << std::endl;
+	std::cout << "fib: " << fib(9) << std::endl;
 
 	TestPalindrom();
 
@@ -1077,7 +1079,5 @@ int main()
 	}
 
 
-    return 0;
+	return 0;
 }
-
-
