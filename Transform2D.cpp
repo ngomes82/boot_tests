@@ -4,7 +4,10 @@
 #include <iostream>
 #include <math.h>
 
+//TODO: Actually get the right PI constant!
 const float DEGREE_TO_RADIANS   = 3.14f / 180.0f;
+//END TODO
+
 const float RIGHT_ANGLE_RADIANS = 90.0f * DEGREE_TO_RADIANS;
 
 struct Matrix3X3
