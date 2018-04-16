@@ -915,7 +915,7 @@ If the result is 0 then they are exactly touching.
 
 
 
-34) Point to AABB Overlap
+34) Point to Sphere Overlap
 *********************
 
 Simply get the displacement from point to sphere center.
