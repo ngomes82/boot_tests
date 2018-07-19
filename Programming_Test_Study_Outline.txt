@@ -1930,3 +1930,7 @@ int fib(int n)
       return n;
    return fib(n-1) + fib(n-2);
 }
+
+57) Given a discrete set of coin denominations and amounts (10 pennines, 5 ncikels, 3 dimes, 2 quarters) and given a target value (53) can you write an algorithm to find me a single combination of coins that will get me that value (or return null if its not possible)?? How about all the possible combinations to reach taht value? (not jsut one)
+***********************
+
